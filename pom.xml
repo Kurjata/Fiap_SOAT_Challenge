@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.fiap</groupId>
 	<artifactId>soat</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>soat</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -31,6 +31,7 @@
 		<maven.version>3.8.1</maven.version>
 		<sonar.version>3.10.0.2594</sonar.version>
 		<jacoco.version>0.8.8</jacoco.version>
+		<openapi.version>2.1.0</openapi.version>
 		<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
 		<lombok-mapstruct.version>0.2.0</lombok-mapstruct.version>
 		<org.projectlombok.version>1.18.30</org.projectlombok.version>
@@ -66,6 +67,11 @@
 			<artifactId>lombok</artifactId>
 			<version>${org.projectlombok.version}</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+			<version>${openapi.version}</version>
 		</dependency>
 	</dependencies>
 
