@@ -9,19 +9,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenAPIConfiguration {
 
-    @Value("${app.version}")
-    private String appVersion;
+  @Value("${app.version}")
+  private String appVersion;
 
-    @Bean
-    public OpenAPI openAPI() {
-        return new OpenAPI()
-                .info(getAppInfo());
-    }
+  @Bean
+  public OpenAPI openAPI() {
+    return new OpenAPI().info(getAppInfo());
+  }
 
-    private Info getAppInfo() {
-        return new Info()
-                .title("Bingo API")
-                .description("DIO bingo api challenge")
-                .version(appVersion);
-    }
+  private Info getAppInfo() {
+    return new Info().title("Bingo API").description("DIO bingo api challenge").version(appVersion);
+  }
 }

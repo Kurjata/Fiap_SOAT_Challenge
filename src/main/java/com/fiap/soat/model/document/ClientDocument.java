@@ -15,9 +15,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientDocument {
-    @Id
-    private ObjectId id;
+  @Id private ObjectId id;
 
-    @Field(name = "nome")
-    private String name;
+  @Field(name = "nome")
+  private String name;
 }
