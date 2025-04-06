@@ -1,10 +1,17 @@
 package com.fiap.soat.rest;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
+import com.fiap.soat.constants.ExceptionSwagger;
+import com.fiap.soat.model.request.customer.CustomerCreateRequest;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
@@ -12,11 +19,14 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/v1/customer")
 @Validated
 @RequiredArgsConstructor
+@ExceptionSwagger
 @Tag(name = "Customer Controller", description = "Customer operations")
 public class CustomerController {
 
-    @GetMapping
-    public Mono<Void> teste() {
-        return Mono.empty();
-    }
+  @PostMapping
+  @ResponseStatus(CREATED)
+  public Mono<Void> create(@RequestBody @Valid final CustomerCreateRequest request) {
+
+    return Mono.empty();
+  }
 }
