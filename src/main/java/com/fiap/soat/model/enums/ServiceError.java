@@ -4,5 +4,6 @@ import lombok.Getter;
 
 @Getter
 public enum ServiceError {
-    GENERIC_ERROR
+    GENERIC_ERROR,
+    CUSTOMER_CREATE_EXISTS_DOCUMENT_NUMBER
 }
