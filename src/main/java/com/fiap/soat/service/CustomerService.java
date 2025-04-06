@@ -1,6 +1,7 @@
 package com.fiap.soat.service;
 
 import static com.fiap.soat.model.enums.ServiceError.CUSTOMER_CREATE_EXISTS_DOCUMENT_NUMBER;
+import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
 import com.fiap.soat.exception.BusinessException;
@@ -20,7 +21,7 @@ public class CustomerService {
   public Mono<CustomerDTO> create(CustomerDTO dto) {
     return customerRepository
         .existsByDocumentNumber(dto.getDocumentNumber())
-        .filter(TRUE::equals)
+        .filter(FALSE::equals)
         .switchIfEmpty(Mono.error(new BusinessException(CUSTOMER_CREATE_EXISTS_DOCUMENT_NUMBER)))
         .thenReturn(dto)
         .flatMap(this::save);

@@ -16,6 +16,7 @@ public interface CustomerMapper extends EntityMapper {
   CustomerDTO toDTO(CustomerDocument document);
 
   @Mapping(target = "id", qualifiedByName = "toObjectId")
+  @Mapping(target = "timestampCreatedDate", ignore = true)
   CustomerDocument toDocument(CustomerDTO dto);
 
   CustomerDTO toDTO(CustomerCreateRequest request);

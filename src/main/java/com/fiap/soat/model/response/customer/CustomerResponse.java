@@ -24,7 +24,7 @@ public class CustomerResponse {
 
   @Schema(description = CUSTOMER_TIMESTAMP_CREATE_DESCRIPTION, example = DATE_TIME_EXAMPLE)
   @JsonFormat(pattern = DATE_TIME_PATTERN)
-  private LocalDateTime timestampCreateDate;
+  private LocalDateTime timestampCreatedDate;
 
   @Schema(description = DOCUMENT_NUMBER_DESCRIPTION, example = DOCUMENT_NUMBER_EXAMPLE)
   private String documentNumber;

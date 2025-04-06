@@ -1,5 +1,9 @@
 spring:
   data:
     mongodb:
-      uri: ${MONGO_CONNECT:mongodb://root:root@localhost:27017/}
+      host: localhost
+      port: 27017
       database: fiap
+      username: root
+      password: root
+      authentication-database: admin

@@ -7,7 +7,7 @@ import org.mapstruct.Named;
 public interface EntityMapper {
   @Named("toObjectId")
   default ObjectId toObjectId(String id) {
-    if (StringUtils.isEmpty(id)) return null;
+    if (StringUtils.isEmpty(id)) return new ObjectId();
     return new ObjectId(id);
   }
 

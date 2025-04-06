@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
 @Builder
-@Document(collation = "cliente")
+@Document(collection = "cliente")
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerDocument {
@@ -20,7 +20,7 @@ public class CustomerDocument {
 
   @Field(name = "dataHoraCriacao")
   @Builder.Default
-  private LocalDateTime timestampCreateDate = LocalDateTime.now();
+  private LocalDateTime timestampCreatedDate = LocalDateTime.now();
 
   @Field(name = "cpf")
   private String documentNumber;

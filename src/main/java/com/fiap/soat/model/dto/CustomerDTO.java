@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CustomerDTO {
   private String id;
-  private LocalDateTime timestampCreateDate;
+  private LocalDateTime timestampCreatedDate;
   private String documentNumber;
   private String name;
 }

@@ -1,5 +1,8 @@
 package com.fiap.soat.model.request.customer;
 
+import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_CREATE_DOCUMENT_NUMBER_INVALID;
+import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_CREATE_DOCUMENT_NUMBER_REQUIRED;
+import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_CREATE_NAME_REQUIRED;
 import static com.fiap.soat.constants.Description.CUSTOMER_NAME_DESCRIPTION;
 import static com.fiap.soat.constants.Description.DOCUMENT_NUMBER_DESCRIPTION;
 import static com.fiap.soat.constants.Example.DOCUMENT_NUMBER_EXAMPLE;
@@ -20,11 +23,11 @@ import org.hibernate.validator.constraints.br.CPF;
 public class CustomerCreateRequest {
 
   @Schema(description = DOCUMENT_NUMBER_DESCRIPTION, example = DOCUMENT_NUMBER_EXAMPLE)
-  @NotBlank
-  @CPF
+  @NotBlank(message = CUSTOMER_CREATE_DOCUMENT_NUMBER_REQUIRED)
+  @CPF(message = CUSTOMER_CREATE_DOCUMENT_NUMBER_INVALID)
   private String documentNumber;
 
   @Schema(description = CUSTOMER_NAME_DESCRIPTION, example = NAME_EXAMPLE)
-  @NotBlank
+  @NotBlank(message = CUSTOMER_CREATE_NAME_REQUIRED)
   private String name;
 }
