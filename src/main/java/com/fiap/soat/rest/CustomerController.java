@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/v1/client")
+@RequestMapping("/api/v1/customer")
 @Validated
 @RequiredArgsConstructor
-@Tag(name = "Client Controller", description = "Customer operations")
-public class ClientController {
+@Tag(name = "Customer Controller", description = "Customer operations")
+public class CustomerController {
 
     @GetMapping
     public Mono<Void> teste() {
