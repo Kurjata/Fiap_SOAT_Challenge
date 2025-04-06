@@ -9,13 +9,22 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @Document(collation = "cliente")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientDocument {
-  @Id private ObjectId id;
+  @Id @Builder.Default private ObjectId id = new ObjectId();
+
+  @Field(name = "dataHoraCriacao")
+  @Builder.Default
+  private LocalDateTime timestampCreateDate = LocalDateTime.now();
+
+  @Field(name = "cpf")
+  private String documentNumber;
 
   @Field(name = "nome")
   private String name;

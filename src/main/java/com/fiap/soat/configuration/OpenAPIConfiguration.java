@@ -18,6 +18,6 @@ public class OpenAPIConfiguration {
   }
 
   private Info getAppInfo() {
-    return new Info().title("Bingo API").description("DIO bingo api challenge").version(appVersion);
+    return new Info().title("FIAP - SOAT").description("FIAP api challenge").version(appVersion);
   }
 }
