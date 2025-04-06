@@ -14,8 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ErrorFieldResponse {
-    @Schema(description = EXCEPTION_FIELD_RESPONSE_NAME_DESCRIPTION)
-    private String name;
-    @Schema(description = EXCEPTION_FIELD_RESPONSE_MESSAGE_DESCRIPTION)
-    private String message;
+  @Schema(description = EXCEPTION_FIELD_RESPONSE_NAME_DESCRIPTION)
+  private String name;
+
+  @Schema(description = EXCEPTION_FIELD_RESPONSE_MESSAGE_DESCRIPTION)
+  private String message;
 }

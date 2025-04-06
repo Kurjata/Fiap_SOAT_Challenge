@@ -23,13 +23,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonInclude(NON_NULL)
 public class ExceptionResponse {
-    @Schema(description = EXCEPTION_RESPONSE_TIMESTAMP_DESCRIPTION)
-    @JsonFormat(pattern = DATE_TIME_PATTERN)
-    private LocalDateTime timestamp;
-    @Schema(description = EXCEPTION_RESPONSE_ERROR_DESCRIPTION)
-    private String errorDescription;
-    @Schema(description = EXCEPTION_RESPONSE_LIST_FIELD_DESCRIPTION)
-    private List<ErrorFieldResponse> fields;
-    @Schema(description = EXCEPTION_RESPONSE_HTTP_STATUS_DESCRIPTION)
-    private Integer status;
+  @Schema(description = EXCEPTION_RESPONSE_TIMESTAMP_DESCRIPTION)
+  @JsonFormat(pattern = DATE_TIME_PATTERN)
+  private LocalDateTime timestamp;
+
+  @Schema(description = EXCEPTION_RESPONSE_ERROR_DESCRIPTION)
+  private String errorDescription;
+
+  @Schema(description = EXCEPTION_RESPONSE_LIST_FIELD_DESCRIPTION)
+  private List<ErrorFieldResponse> fields;
+
+  @Schema(description = EXCEPTION_RESPONSE_HTTP_STATUS_DESCRIPTION)
+  private Integer status;
 }
