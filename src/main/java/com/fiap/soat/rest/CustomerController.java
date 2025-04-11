@@ -1,6 +1,7 @@
 package com.fiap.soat.rest;
 
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.fiap.soat.constants.ExceptionSwagger;
@@ -8,6 +9,7 @@ import com.fiap.soat.mapper.CustomerMapper;
 import com.fiap.soat.model.request.customer.CustomerCreateRequest;
 import com.fiap.soat.model.response.customer.CustomerResponse;
 import com.fiap.soat.service.CustomerService;
+import com.fiap.soat.util.CustomerUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -58,21 +60,23 @@ public class CustomerController {
   }
 
   @GetMapping("/{documentNumber}")
-  @ResponseStatus(CREATED)
+  @ResponseStatus(OK)
   @Operation(
-          summary = "Customer get",
-          description = "This endpoint is used to create a new customer in the database.",
-          responses =
+      summary = "Customer get",
+      description =
+          "This endpoint is used to search for a customer in the database by document number.",
+      responses =
           @ApiResponse(
-                  responseCode = "201",
-                  description = "Customer created",
-                  content =
+              responseCode = "200",
+              description = "Customer created",
+              content =
                   @Content(
-                          mediaType = APPLICATION_JSON_VALUE,
-                          schema = @Schema(implementation = CustomerResponse.class))))
-  public Mono<CustomerResponse> getByDocumentNumber(
-          @PathVariable final String documentNumber
-  ) {
-    return Mono.empty();
+                      mediaType = APPLICATION_JSON_VALUE,
+                      schema = @Schema(implementation = CustomerResponse.class))))
+  public Mono<CustomerResponse> getByDocumentNumber(@PathVariable final String documentNumber) {
+    return Mono.just(documentNumber)
+        .map(CustomerUtil::clearDocumentNumber)
+        .flatMap(customerService::getByDocumentNumber)
+        .map(customerMapper::toResponse);
   }
 }

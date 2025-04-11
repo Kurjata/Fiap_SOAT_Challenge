@@ -1,10 +1,11 @@
 package com.fiap.soat.service;
 
 import static com.fiap.soat.model.enums.ServiceError.CUSTOMER_CREATE_EXISTS_DOCUMENT_NUMBER;
+import static com.fiap.soat.model.enums.ServiceError.CUSTOMER_NOT_EXISTS;
 import static java.lang.Boolean.FALSE;
-import static java.lang.Boolean.TRUE;
 
 import com.fiap.soat.exception.BusinessException;
+import com.fiap.soat.exception.NotFoundException;
 import com.fiap.soat.mapper.CustomerMapper;
 import com.fiap.soat.model.dto.CustomerDTO;
 import com.fiap.soat.repository.CustomerRepository;
@@ -31,6 +32,13 @@ public class CustomerService {
     return Mono.just(dto)
         .map(customerMapper::toDocument)
         .flatMap(customerRepository::save)
+        .map(customerMapper::toDTO);
+  }
+
+  public Mono<CustomerDTO> getByDocumentNumber(String documentNumber) {
+    return customerRepository
+        .findByDocumentNumber(documentNumber)
+        .switchIfEmpty(Mono.error(new NotFoundException(CUSTOMER_NOT_EXISTS)))
         .map(customerMapper::toDTO);
   }
 }

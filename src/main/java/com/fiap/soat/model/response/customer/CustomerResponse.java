@@ -1,11 +1,13 @@
 package com.fiap.soat.model.response.customer;
 
 import static com.fiap.soat.constants.DateConstants.DATE_TIME_PATTERN;
+import static com.fiap.soat.constants.Description.CUSTOMER_EMAIL;
 import static com.fiap.soat.constants.Description.CUSTOMER_NAME_DESCRIPTION;
 import static com.fiap.soat.constants.Description.CUSTOMER_TIMESTAMP_CREATE_DESCRIPTION;
 import static com.fiap.soat.constants.Description.DOCUMENT_NUMBER_DESCRIPTION;
 import static com.fiap.soat.constants.Example.DATE_TIME_EXAMPLE;
 import static com.fiap.soat.constants.Example.DOCUMENT_NUMBER_EXAMPLE;
+import static com.fiap.soat.constants.Example.EMAIL_EXAMPLE;
 import static com.fiap.soat.constants.Example.NAME_EXAMPLE;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -31,4 +33,7 @@ public class CustomerResponse {
 
   @Schema(description = CUSTOMER_NAME_DESCRIPTION, example = NAME_EXAMPLE)
   private String name;
+
+  @Schema(description = CUSTOMER_EMAIL, example = EMAIL_EXAMPLE)
+  private String email;
 }

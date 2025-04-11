@@ -9,4 +9,5 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface CustomerRepository extends ReactiveMongoRepository<CustomerDocument, ObjectId> {
     Mono<Boolean> existsByDocumentNumber(String documentNumber);
+    Mono<CustomerDocument> findByDocumentNumber(String documentNumber);
 }

@@ -4,6 +4,7 @@ import com.fiap.soat.model.document.customer.CustomerDocument;
 import com.fiap.soat.model.dto.CustomerDTO;
 import com.fiap.soat.model.request.customer.CustomerCreateRequest;
 import com.fiap.soat.model.response.customer.CustomerResponse;
+import com.fiap.soat.util.CustomerUtil;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -27,6 +28,6 @@ public interface CustomerMapper extends EntityMapper {
 
   @Named("clearDocumentNumber")
   default String clearDocumentNumber(String documentNumber) {
-    return documentNumber.replaceAll("-", "").replaceAll("\\.", "");
+    return CustomerUtil.clearDocumentNumber(documentNumber);
   }
 }
