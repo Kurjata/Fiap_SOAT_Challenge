@@ -15,4 +15,5 @@ public class CustomerDTO {
   private LocalDateTime timestampCreatedDate;
   private String documentNumber;
   private String name;
+  private String email;
 }

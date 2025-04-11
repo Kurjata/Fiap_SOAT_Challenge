@@ -6,6 +6,7 @@ import com.fiap.soat.model.request.customer.CustomerCreateRequest;
 import com.fiap.soat.model.response.customer.CustomerResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
@@ -19,7 +20,13 @@ public interface CustomerMapper extends EntityMapper {
   @Mapping(target = "timestampCreatedDate", ignore = true)
   CustomerDocument toDocument(CustomerDTO dto);
 
+  @Mapping(target = "documentNumber", qualifiedByName = "clearDocumentNumber")
   CustomerDTO toDTO(CustomerCreateRequest request);
 
   CustomerResponse toResponse(CustomerDTO dto);
+
+  @Named("clearDocumentNumber")
+  default String clearDocumentNumber(String documentNumber) {
+    return documentNumber.replaceAll("-", "").replaceAll("\\.", "");
+  }
 }

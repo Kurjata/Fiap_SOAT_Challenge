@@ -11,6 +11,7 @@ public class Description {
   //Customer
   public static final String CUSTOMER_NAME_DESCRIPTION = "Customer name";
   public static final String CUSTOMER_TIMESTAMP_CREATE_DESCRIPTION = "Date time customer creation";
+  public static final String CUSTOMER_EMAIL = "Customer email";
 
   // Exception
   public static final String EXCEPTION_RESPONSE_TIMESTAMP_DESCRIPTION = "Date time of exception";

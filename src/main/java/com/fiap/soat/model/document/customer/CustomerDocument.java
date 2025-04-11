@@ -27,4 +27,6 @@ public class CustomerDocument {
 
   @Field(name = "nome")
   private String name;
+
+  private String email;
 }

@@ -16,6 +16,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,5 +55,24 @@ public class CustomerController {
         .map(customerMapper::toDTO)
         .flatMap(customerService::create)
         .map(customerMapper::toResponse);
+  }
+
+  @GetMapping("/{documentNumber}")
+  @ResponseStatus(CREATED)
+  @Operation(
+          summary = "Customer get",
+          description = "This endpoint is used to create a new customer in the database.",
+          responses =
+          @ApiResponse(
+                  responseCode = "201",
+                  description = "Customer created",
+                  content =
+                  @Content(
+                          mediaType = APPLICATION_JSON_VALUE,
+                          schema = @Schema(implementation = CustomerResponse.class))))
+  public Mono<CustomerResponse> getByDocumentNumber(
+          @PathVariable final String documentNumber
+  ) {
+    return Mono.empty();
   }
 }
