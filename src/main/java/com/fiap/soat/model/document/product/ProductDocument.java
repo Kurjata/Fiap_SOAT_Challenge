@@ -33,6 +33,9 @@ public class ProductDocument {
   @Field(name = "amount")
   private BigDecimal amount;
 
+  @Field(name = "nome")
+  private String name;
+
   @Field(name = "descricao")
   private String description;
 

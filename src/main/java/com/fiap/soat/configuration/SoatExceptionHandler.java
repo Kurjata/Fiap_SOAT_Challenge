@@ -43,7 +43,7 @@ public class SoatExceptionHandler {
   public Mono<ResponseEntity<ExceptionResponse>> handlerException(final ChallengeException ex) {
     return Mono.just(getMessage(ex.getMessage()))
         .flatMap(message -> getExceptionResponse(ex.getStatus(), message, null))
-        .doFirst(() -> log.error("There was a BingoException error: ", ex));
+        .doFirst(() -> log.error("There was a ChallengeException error: ", ex));
   }
 
   @ExceptionHandler(ServerWebInputException.class)

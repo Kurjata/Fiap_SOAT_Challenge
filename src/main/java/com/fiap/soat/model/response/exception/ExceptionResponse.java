@@ -25,7 +25,8 @@ import lombok.NoArgsConstructor;
 public class ExceptionResponse {
   @Schema(description = EXCEPTION_RESPONSE_TIMESTAMP_DESCRIPTION)
   @JsonFormat(pattern = DATE_TIME_PATTERN)
-  private LocalDateTime timestamp;
+  @Builder.Default
+  private LocalDateTime timestamp = LocalDateTime.now();
 
   @Schema(description = EXCEPTION_RESPONSE_ERROR_DESCRIPTION)
   private String errorDescription;
