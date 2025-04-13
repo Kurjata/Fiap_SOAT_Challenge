@@ -2,6 +2,7 @@ package com.fiap.soat.service;
 
 import com.fiap.soat.exception.NotFoundException;
 import com.fiap.soat.mapper.ProductMapper;
+import com.fiap.soat.model.document.product.ProductDocument;
 import com.fiap.soat.model.dto.product.ProductDTO;
 import com.fiap.soat.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -25,11 +26,18 @@ public class ProductService {
   }
 
   public Mono<ProductDTO> update(ProductDTO dto) {
-    return Mono.just(dto.getId())
+    return Mono.just(dto.getId()).flatMap(this::getById).map(productMapper::toDTO);
+  }
+
+  public Mono<Void> delete(String id) {
+    return getById(id).flatMap(productRepository::delete);
+  }
+
+  private Mono<ProductDocument> getById(String id) {
+    return Mono.just(id)
         .filter(ObjectId::isValid)
         .map(ObjectId::new)
         .flatMap(productRepository::findById)
-        .map(productMapper::toDTO)
         .switchIfEmpty(Mono.error(new NotFoundException(PRODUCT_NOT_EXISTS)));
   }
 }
