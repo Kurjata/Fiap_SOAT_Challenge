@@ -1,12 +1,15 @@
 package com.fiap.soat.service;
 
+import com.fiap.soat.exception.NotFoundException;
 import com.fiap.soat.mapper.ProductMapper;
 import com.fiap.soat.model.dto.product.ProductDTO;
-import com.fiap.soat.model.response.product.ProductResponse;
 import com.fiap.soat.repository.ProductRepository;
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+
+import static com.fiap.soat.model.enums.ServiceError.PRODUCT_NOT_EXISTS;
 
 @Service
 @AllArgsConstructor
@@ -22,6 +25,11 @@ public class ProductService {
   }
 
   public Mono<ProductDTO> update(ProductDTO dto) {
-    return Mono.empty();
+    return Mono.just(dto.getId())
+        .filter(ObjectId::isValid)
+        .map(ObjectId::new)
+        .flatMap(productRepository::findById)
+        .map(productMapper::toDTO)
+        .switchIfEmpty(Mono.error(new NotFoundException(PRODUCT_NOT_EXISTS)));
   }
 }
