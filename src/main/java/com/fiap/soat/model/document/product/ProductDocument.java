@@ -1,6 +1,6 @@
 package com.fiap.soat.model.document.product;
 
-import com.fiap.soat.model.enums.ProductType;
+import com.fiap.soat.model.enums.ProductCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,8 +27,8 @@ public class ProductDocument {
   @Builder.Default
   private LocalDateTime timestampCreatedDate = LocalDateTime.now();
 
-  @Field(name = "tipo")
-  private ProductType type;
+  @Field(name = "categoria")
+  private ProductCategory category;
 
   @Field(name = "amount")
   private BigDecimal amount;

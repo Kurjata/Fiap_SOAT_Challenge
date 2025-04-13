@@ -7,7 +7,7 @@ import static java.lang.Boolean.FALSE;
 import com.fiap.soat.exception.BusinessException;
 import com.fiap.soat.exception.NotFoundException;
 import com.fiap.soat.mapper.CustomerMapper;
-import com.fiap.soat.model.dto.CustomerDTO;
+import com.fiap.soat.model.dto.customer.CustomerDTO;
 import com.fiap.soat.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

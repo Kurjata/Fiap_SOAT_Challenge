@@ -1,4 +1,4 @@
-package com.fiap.soat.model.dto;
+package com.fiap.soat.model.dto.customer;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;

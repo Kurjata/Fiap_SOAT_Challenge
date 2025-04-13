@@ -1,7 +1,7 @@
 package com.fiap.soat.mapper;
 
 import com.fiap.soat.model.document.customer.CustomerDocument;
-import com.fiap.soat.model.dto.CustomerDTO;
+import com.fiap.soat.model.dto.customer.CustomerDTO;
 import com.fiap.soat.model.request.customer.CustomerCreateRequest;
 import com.fiap.soat.model.response.customer.CustomerResponse;
 import com.fiap.soat.util.CustomerUtil;

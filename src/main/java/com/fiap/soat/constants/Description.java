@@ -13,6 +13,19 @@ public class Description {
   public static final String CUSTOMER_TIMESTAMP_CREATE_DESCRIPTION = "Date time customer creation";
   public static final String CUSTOMER_EMAIL = "Customer email";
 
+  //Product
+  public static final String PRODUCT_ID = "Product id";
+  public static final String PRODUCT_TIMESTAMP_CREATE_DESCRIPTION = "Date time product creation";
+  public static final String PRODUCT_NAME = "Product name";
+  public static final String PRODUCT_CATEGORY = "Product category";
+  public static final String PRODUCT_AMOUNT = "Product amount";
+  public static final String PRODUCT_DESCRIPTION = "Product description";
+  public static final String PRODUCT_IMAGES = "Product image list";
+  public static final String PRODUCT_IMAGE_ID = "Product image id";
+  public static final String PRODUCT_IMAGE_TIMESTAMP_CREATED_DATE = "Product image timestamp created date";
+  public static final String PRODUCT_IMAGE_NAME = "Product image file name";
+  public static final String PRODUCT_IMAGE_BYTES = "Product image bytes array";
+
   // Exception
   public static final String EXCEPTION_RESPONSE_TIMESTAMP_DESCRIPTION = "Date time of exception";
   public static final String EXCEPTION_RESPONSE_ERROR_DESCRIPTION = "Description of thrown exception";
