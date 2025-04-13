@@ -2,7 +2,7 @@ package com.fiap.soat.mapper;
 
 import com.fiap.soat.model.document.product.ProductDocument;
 import com.fiap.soat.model.dto.product.ProductDTO;
-import com.fiap.soat.model.request.product.ProductCreateRequest;
+import com.fiap.soat.model.request.product.ProductRequest;
 import com.fiap.soat.model.response.product.ProductResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -19,7 +19,10 @@ public interface ProductMapper extends EntityMapper {
   @Mapping(target = "timestampCreatedDate", ignore = true)
   ProductDocument toDocument(ProductDTO dto);
 
-  ProductDTO toDTO(ProductCreateRequest request);
+  ProductDTO toDTO(ProductRequest request);
+
+  @Mapping(target = "id", source = "id")
+  ProductDTO toDTO(ProductRequest request, String id);
 
   ProductResponse toResponse(ProductDTO dto);
 }

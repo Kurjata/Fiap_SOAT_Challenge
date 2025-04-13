@@ -28,7 +28,7 @@ import static com.fiap.soat.constants.Example.PRODUCT_NAME_EXAMPLE;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductCreateRequest {
+public class ProductRequest {
   @Schema(description = PRODUCT_NAME, example = PRODUCT_NAME_EXAMPLE)
   @NotBlank(message = PRODUCT_CREATE_NAME_REQUIRED)
   private String name;

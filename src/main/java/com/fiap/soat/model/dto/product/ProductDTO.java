@@ -17,7 +17,7 @@ import java.util.List;
 public class ProductDTO {
   private String id;
   private LocalDateTime timestampCreatedDate;
-  private ProductCategory type;
+  private ProductCategory category;
   private BigDecimal amount;
   private String name;
   private String description;
