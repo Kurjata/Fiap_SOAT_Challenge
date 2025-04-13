@@ -1,10 +1,13 @@
 package com.fiap.soat.rest;
 
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 import com.fiap.soat.constants.ExceptionSwagger;
 import com.fiap.soat.mapper.ProductMapper;
 import com.fiap.soat.model.request.product.ProductCreateRequest;
-import com.fiap.soat.model.response.customer.CustomerResponse;
 import com.fiap.soat.model.response.product.ProductResponse;
+import com.fiap.soat.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,9 +23,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-
 @RestController
 @RequestMapping("/api/v1/product")
 @Validated
@@ -31,21 +31,25 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Tag(name = "Product Controller", description = "Product operations")
 public class ProductController {
   private final ProductMapper productMapper;
+  private final ProductService productService;
 
   @PostMapping
   @ResponseStatus(CREATED)
   @Operation(
-          summary = "Product creation",
-          description = "This endpoint is used to create a new product in the database.",
-          responses =
+      summary = "Product creation",
+      description = "This endpoint is used to create a new product in the database.",
+      responses =
           @ApiResponse(
-                  responseCode = "201",
-                  description = "Product created",
-                  content =
+              responseCode = "201",
+              description = "Product created",
+              content =
                   @Content(
-                          mediaType = APPLICATION_JSON_VALUE,
-                          schema = @Schema(implementation = ProductResponse.class))))
+                      mediaType = APPLICATION_JSON_VALUE,
+                      schema = @Schema(implementation = ProductResponse.class))))
   public Mono<ProductResponse> create(@RequestBody @Valid final ProductCreateRequest request) {
-    return Mono.empty();
+    return Mono.just(request)
+        .map(productMapper::toDTO)
+        .flatMap(productService::create)
+        .map(productMapper::toResponse);
   }
 }

@@ -28,23 +28,22 @@ import static com.fiap.soat.constants.Example.PRODUCT_NAME_EXAMPLE;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductResponse {
+  @Schema(description = PRODUCT_ID, example = ID_EXAMPLE)
+  private String id;
 
-    @Schema(description = PRODUCT_ID, example = ID_EXAMPLE)
-    private String id;
+  @Schema(description = PRODUCT_TIMESTAMP_CREATE_DESCRIPTION, example = DATE_TIME_EXAMPLE)
+  @JsonFormat(pattern = DATE_TIME_PATTERN)
+  private LocalDateTime timestampCreatedDate;
 
-    @Schema(description = PRODUCT_TIMESTAMP_CREATE_DESCRIPTION, example = DATE_TIME_EXAMPLE)
-    @JsonFormat(pattern = DATE_TIME_PATTERN)
-    private LocalDateTime timestampCreatedDate;
+  @Schema(description = PRODUCT_CATEGORY, implementation = ProductCategory.class)
+  private ProductCategory category;
 
-    @Schema(description = PRODUCT_CATEGORY, implementation = ProductCategory.class)
-    private ProductCategory category;
+  @Schema(description = PRODUCT_NAME, example = PRODUCT_NAME_EXAMPLE)
+  private String name;
 
-    @Schema(description = PRODUCT_NAME, example = PRODUCT_NAME_EXAMPLE)
-    private String name;
+  @Schema(description = PRODUCT_DESCRIPTION, example = PRODUCT_DESCRIPTION_EXAMPLE)
+  private String description;
 
-    @Schema(description = PRODUCT_DESCRIPTION, example = PRODUCT_DESCRIPTION_EXAMPLE)
-    private String description;
-
-    @Schema(description = PRODUCT_IMAGES)
-    private List<ProductImageResponse> images;
+  @Schema(description = PRODUCT_IMAGES)
+  private List<ProductImageResponse> images;
 }

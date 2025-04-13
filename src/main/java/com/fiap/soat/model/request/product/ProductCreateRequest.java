@@ -12,6 +12,10 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_AMOUNT_REQUIRED;
+import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_INVALID;
+import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_REQUIRED;
+import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_NAME_REQUIRED;
 import static com.fiap.soat.constants.Description.PRODUCT_AMOUNT;
 import static com.fiap.soat.constants.Description.PRODUCT_CATEGORY;
 import static com.fiap.soat.constants.Description.PRODUCT_DESCRIPTION;
@@ -25,19 +29,19 @@ import static com.fiap.soat.constants.Example.PRODUCT_NAME_EXAMPLE;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductCreateRequest {
-    @Schema(description = PRODUCT_NAME, example = PRODUCT_NAME_EXAMPLE)
-    @NotBlank
-    private String name;
+  @Schema(description = PRODUCT_NAME, example = PRODUCT_NAME_EXAMPLE)
+  @NotBlank(message = PRODUCT_CREATE_NAME_REQUIRED)
+  private String name;
 
-    @Schema(description = PRODUCT_CATEGORY, implementation = ProductCategory.class)
-    @ValueOfEnum(enumClass = ProductCategory.class, message = "")
-    @NotBlank
-    private String category;
+  @Schema(description = PRODUCT_CATEGORY, implementation = ProductCategory.class)
+  @ValueOfEnum(enumClass = ProductCategory.class, message = PRODUCT_CREATE_CATEGORY_INVALID)
+  @NotBlank(message = PRODUCT_CREATE_CATEGORY_REQUIRED)
+  private String category;
 
-    @Schema(description = PRODUCT_AMOUNT, example = AMOUNT_EXAMPLE)
-    @NotNull
-    private BigDecimal amount;
+  @Schema(description = PRODUCT_AMOUNT, example = AMOUNT_EXAMPLE)
+  @NotNull(message = PRODUCT_CREATE_AMOUNT_REQUIRED)
+  private BigDecimal amount;
 
-    @Schema(description = PRODUCT_DESCRIPTION, example = PRODUCT_DESCRIPTION_EXAMPLE)
-    private String description;
+  @Schema(description = PRODUCT_DESCRIPTION, example = PRODUCT_DESCRIPTION_EXAMPLE)
+  private String description;
 }

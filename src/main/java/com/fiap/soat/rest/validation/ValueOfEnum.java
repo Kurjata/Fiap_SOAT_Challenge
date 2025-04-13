@@ -1,4 +1,5 @@
 package com.fiap.soat.rest.validation;
+
 import com.fiap.soat.rest.validation.impl.ValueOfEnumImpl;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -18,9 +19,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({PARAMETER, FIELD})
 @ReportAsSingleViolation
 public @interface ValueOfEnum {
-    Class<? extends Enum> enumClass();
-    String message() default "Value is not valid";
+  Class<? extends Enum> enumClass();
 
-    Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
+  String message() default "Value is not valid";
+
+  Class<?>[] groups() default {};
+
+  Class<? extends Payload>[] payload() default {};
 }
