@@ -1,5 +1,6 @@
 package com.fiap.soat.rest;
 
+import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_INVALID;
 import static com.fiap.soat.constants.Description.PRODUCT_ID;
 import static com.fiap.soat.constants.Example.ID_EXAMPLE;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -9,8 +10,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.fiap.soat.constants.ExceptionSwagger;
 import com.fiap.soat.mapper.ProductMapper;
+import com.fiap.soat.model.dto.product.ProductDTO;
+import com.fiap.soat.model.enums.ProductCategory;
 import com.fiap.soat.model.request.product.ProductRequest;
+import com.fiap.soat.model.response.product.ProductPageResponse;
 import com.fiap.soat.model.response.product.ProductResponse;
+import com.fiap.soat.rest.validation.ValueOfEnum;
 import com.fiap.soat.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -20,8 +25,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,6 +38,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/product")
@@ -99,5 +109,27 @@ public class ProductController {
   public Mono<Void> delete(
       @PathVariable @Parameter(description = PRODUCT_ID, example = ID_EXAMPLE) final String id) {
     return productService.delete(id);
+  }
+
+  @GetMapping("/category/{category}")
+  @ResponseStatus(OK)
+  @Operation(
+      summary = "Product get by category",
+      description = "This endpoint is used to get products",
+      responses =
+          @ApiResponse(
+              responseCode = "200",
+              description = "products searched",
+              content =
+                  @Content(
+                      mediaType = APPLICATION_JSON_VALUE,
+                      schema = @Schema(implementation = ProductPageResponse.class))))
+  public Mono<ProductPageResponse> getByCategory(
+      @PathVariable
+          @Valid
+          @ValueOfEnum(enumClass = ProductCategory.class, message = PRODUCT_CREATE_CATEGORY_INVALID)
+          final String category) {
+    return Mono.just(new PageImpl<>(List.of(ProductDTO.builder().build()), PageRequest.of(0, 1), 1L))
+            .map(this.productMapper::toPageResponse);
   }
 }

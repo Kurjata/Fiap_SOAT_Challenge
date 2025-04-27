@@ -33,4 +33,12 @@ public class Description {
   public static final String EXCEPTION_RESPONSE_HTTP_STATUS_DESCRIPTION = "Http exception status";
   public static final String EXCEPTION_FIELD_RESPONSE_NAME_DESCRIPTION = "Field name or exception validation";
   public static final String EXCEPTION_FIELD_RESPONSE_MESSAGE_DESCRIPTION = "Message describing the reason for the exception";
+
+  //Page response
+  public static final String PAGE_RESPONSE_PAGE_DESCRIPTION = "Page number";
+  public static final String PAGE_RESPONSE_SIZE_DESCRIPTION = "Page size";
+  public static final String PAGE_RESPONSE_ITEMS_DESCRIPTION = "List with searched items";
+  public static final String PAGE_RESPONSE_TOTAL_PAGES_DESCRIPTION = "Total number of pages";
+  public static final String PAGE_RESPONSE_HAS_NEXT_DESCRIPTION = "Check if there is a next page";
+  public static final String PAGE_RESPONSE_IS_LAST_DESCRIPTION = "Check if it is the last page";
 }
