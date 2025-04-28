@@ -21,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDocument {
-  @Id @Builder.Default private ObjectId id = new ObjectId();
+  @Id private ObjectId id;
 
   @Field(name = "dataHoraCriacao")
   @Builder.Default
@@ -31,7 +31,8 @@ public class OrderDocument {
   private OrderCustomerDocument customer;
 
   @Field(name = "amount")
-  private BigDecimal amount;
+  @Builder.Default
+  private BigDecimal amount = BigDecimal.ZERO;
 
   @Builder.Default private OrderStatus status = OrderStatus.CREATED;
 

@@ -8,16 +8,19 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.fiap.soat.constants.DateConstants.DATE_TIME_PATTERN;
+import static com.fiap.soat.constants.Description.PRODUCT_AMOUNT;
 import static com.fiap.soat.constants.Description.PRODUCT_CATEGORY;
 import static com.fiap.soat.constants.Description.PRODUCT_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PRODUCT_ID;
 import static com.fiap.soat.constants.Description.PRODUCT_IMAGES;
 import static com.fiap.soat.constants.Description.PRODUCT_NAME;
 import static com.fiap.soat.constants.Description.PRODUCT_TIMESTAMP_CREATE_DESCRIPTION;
+import static com.fiap.soat.constants.Example.AMOUNT_EXAMPLE;
 import static com.fiap.soat.constants.Example.DATE_TIME_EXAMPLE;
 import static com.fiap.soat.constants.Example.ID_EXAMPLE;
 import static com.fiap.soat.constants.Example.PRODUCT_DESCRIPTION_EXAMPLE;
@@ -44,6 +47,7 @@ public class ProductResponse {
   @Schema(description = PRODUCT_DESCRIPTION, example = PRODUCT_DESCRIPTION_EXAMPLE)
   private String description;
 
-  @Schema(description = PRODUCT_IMAGES)
-  private List<ProductImageResponse> images;
+  @Schema(description = PRODUCT_AMOUNT, example = AMOUNT_EXAMPLE)
+  private BigDecimal amount;
+
 }

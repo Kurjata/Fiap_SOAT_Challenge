@@ -21,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDocument {
-  @Id @Builder.Default private ObjectId id = new ObjectId();
+  @Id private ObjectId id;
 
   @Field(name = "dataHoraCriacao")
   @Builder.Default

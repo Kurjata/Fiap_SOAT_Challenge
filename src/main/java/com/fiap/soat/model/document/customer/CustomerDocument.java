@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomerDocument {
-  @Id @Builder.Default private ObjectId id = new ObjectId();
+  @Id private ObjectId id;
 
   @Field(name = "dataHoraCriacao")
   @Builder.Default
