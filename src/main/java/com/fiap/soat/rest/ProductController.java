@@ -13,7 +13,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.fiap.soat.constants.ExceptionSwagger;
 import com.fiap.soat.mapper.ProductMapper;
-import com.fiap.soat.model.dto.product.ProductDTO;
 import com.fiap.soat.model.enums.ProductCategory;
 import com.fiap.soat.model.request.product.ProductRequest;
 import com.fiap.soat.model.response.product.ProductPageResponse;
@@ -27,10 +26,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.tuple.Pair;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;

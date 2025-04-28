@@ -1,5 +1,7 @@
 package com.fiap.soat.service;
 
+import static com.fiap.soat.model.enums.ServiceError.PRODUCT_NOT_EXISTS;
+
 import com.fiap.soat.exception.NotFoundException;
 import com.fiap.soat.mapper.ProductMapper;
 import com.fiap.soat.model.document.product.ProductDocument;
@@ -7,15 +9,11 @@ import com.fiap.soat.model.dto.product.ProductDTO;
 import com.fiap.soat.model.enums.ProductCategory;
 import com.fiap.soat.repository.ProductRepository;
 import lombok.AllArgsConstructor;
-import org.apache.commons.lang3.tuple.Pair;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-
-import static com.fiap.soat.model.enums.ServiceError.PRODUCT_NOT_EXISTS;
 
 @Service
 @AllArgsConstructor
