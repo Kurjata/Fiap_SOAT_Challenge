@@ -1,6 +1,8 @@
 package com.fiap.soat.rest;
 
 import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_INVALID;
+import static com.fiap.soat.constants.Description.PAGE_PARAMETER_DESCRIPTION;
+import static com.fiap.soat.constants.Description.PAGE_PARAMETER_SIZE_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PRODUCT_CATEGORY;
 import static com.fiap.soat.constants.Description.PRODUCT_ID;
 import static com.fiap.soat.constants.Example.ID_EXAMPLE;
@@ -134,8 +136,12 @@ public class ProductController {
           @Valid
           @ValueOfEnum(enumClass = ProductCategory.class, message = PRODUCT_CREATE_CATEGORY_INVALID)
           final String category,
-      @RequestParam(required = false, defaultValue = "0") final Integer page,
-      @RequestParam(required = false, defaultValue = "20") final Integer size) {
+      @RequestParam(required = false, defaultValue = "0")
+          @Parameter(description = PAGE_PARAMETER_DESCRIPTION)
+          final Integer page,
+      @RequestParam(required = false, defaultValue = "20")
+          @Parameter(description = PAGE_PARAMETER_SIZE_DESCRIPTION)
+          final Integer size) {
 
     return Mono.just(category)
         .map(ProductCategory::getByName)

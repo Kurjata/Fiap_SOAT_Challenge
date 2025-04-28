@@ -41,4 +41,8 @@ public class Description {
   public static final String PAGE_RESPONSE_TOTAL_PAGES_DESCRIPTION = "Total number of pages";
   public static final String PAGE_RESPONSE_HAS_NEXT_DESCRIPTION = "Check if there is a next page";
   public static final String PAGE_RESPONSE_IS_LAST_DESCRIPTION = "Check if it is the last page";
+
+  //Page parameter
+  public static final String PAGE_PARAMETER_DESCRIPTION = "Page number";
+  public static final String PAGE_PARAMETER_SIZE_DESCRIPTION = "Page size";
 }
