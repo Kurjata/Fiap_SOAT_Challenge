@@ -1,6 +1,7 @@
 package com.fiap.soat.rest;
 
 import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_INVALID;
+import static com.fiap.soat.constants.Description.PRODUCT_CATEGORY;
 import static com.fiap.soat.constants.Description.PRODUCT_ID;
 import static com.fiap.soat.constants.Example.ID_EXAMPLE;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -24,7 +25,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.validation.annotation.Validated;
@@ -35,11 +38,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/product")
@@ -119,17 +121,26 @@ public class ProductController {
       responses =
           @ApiResponse(
               responseCode = "200",
-              description = "products searched",
+              description = "Products searched",
               content =
                   @Content(
                       mediaType = APPLICATION_JSON_VALUE,
                       schema = @Schema(implementation = ProductPageResponse.class))))
   public Mono<ProductPageResponse> getByCategory(
       @PathVariable
+          @Parameter(
+              description = PRODUCT_CATEGORY,
+              schema = @Schema(implementation = ProductCategory.class))
           @Valid
           @ValueOfEnum(enumClass = ProductCategory.class, message = PRODUCT_CREATE_CATEGORY_INVALID)
-          final String category) {
-    return Mono.just(new PageImpl<>(List.of(ProductDTO.builder().build()), PageRequest.of(0, 1), 1L))
-            .map(this.productMapper::toPageResponse);
+          final String category,
+      @RequestParam(required = false, defaultValue = "0") final Integer page,
+      @RequestParam(required = false, defaultValue = "20") final Integer size) {
+
+    return Mono.just(category)
+        .map(ProductCategory::getByName)
+        .map(c -> Pair.of(c, PageRequest.of(page, size)))
+        .flatMap(pair -> this.productService.getByCategory(pair.getLeft(), pair.getRight()))
+        .map(this.productMapper::toPageResponse);
   }
 }
