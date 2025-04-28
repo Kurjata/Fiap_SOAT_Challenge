@@ -7,9 +7,10 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor(access = PRIVATE)
 public class ControllerExceptions {
 
+    public static final String DOCUMENT_NUMBER_INVALID = "DOCUMENT_NUMBER_INVALID";
+
     //Customer
     public static final String CUSTOMER_CREATE_DOCUMENT_NUMBER_REQUIRED = "CUSTOMER_CREATE_DOCUMENT_NUMBER_REQUIRED";
-    public static final String CUSTOMER_CREATE_DOCUMENT_NUMBER_INVALID = "CUSTOMER_CREATE_DOCUMENT_NUMBER_INVALID";
     public static final String CUSTOMER_CREATE_NAME_REQUIRED = "CUSTOMER_CREATE_NAME_REQUIRED";
     public static final String CUSTOMER_EMAIL_REQUIRED = "CUSTOMER_EMAIL_REQUIRED";
     public static final String CUSTOMER_EMAIL_INVALID = "CUSTOMER_EMAIL_INVALID";

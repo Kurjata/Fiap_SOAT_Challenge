@@ -29,4 +29,6 @@ public class OrderController {
 
     //TODO: Criar chamada para criar pagamento (no primeiro momento só muda status pois não tem regra de negócio)
 
+    //TODO: listar pedidos
+
 }

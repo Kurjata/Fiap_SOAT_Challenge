@@ -1,6 +1,6 @@
 package com.fiap.soat.model.request.customer;
 
-import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_CREATE_DOCUMENT_NUMBER_INVALID;
+import static com.fiap.soat.constants.ControllerExceptions.DOCUMENT_NUMBER_INVALID;
 import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_CREATE_DOCUMENT_NUMBER_REQUIRED;
 import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_CREATE_NAME_REQUIRED;
 import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_EMAIL_INVALID;
@@ -29,7 +29,7 @@ public class CustomerCreateRequest {
 
   @Schema(description = DOCUMENT_NUMBER_DESCRIPTION, example = DOCUMENT_NUMBER_EXAMPLE)
   @NotBlank(message = CUSTOMER_CREATE_DOCUMENT_NUMBER_REQUIRED)
-  @CPF(message = CUSTOMER_CREATE_DOCUMENT_NUMBER_INVALID)
+  @CPF(message = DOCUMENT_NUMBER_INVALID)
   private String documentNumber;
 
   @Schema(description = CUSTOMER_NAME_DESCRIPTION, example = NAME_EXAMPLE)
