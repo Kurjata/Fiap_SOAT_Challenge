@@ -2,12 +2,27 @@ package com.fiap.soat.rest;
 
 import com.fiap.soat.constants.ExceptionSwagger;
 import com.fiap.soat.mapper.OrderMapper;
+import com.fiap.soat.model.request.customer.CustomerCreateRequest;
+import com.fiap.soat.model.request.order.OrderCreateRequest;
+import com.fiap.soat.model.response.customer.CustomerResponse;
 import com.fiap.soat.service.OrderService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
 @RequestMapping("/api/v1/order")
@@ -19,7 +34,26 @@ public class OrderController {
     private final OrderService orderService;
     private final OrderMapper orderMapper;
 
-    //TODO: Criar pedido
+    @PostMapping
+    @ResponseStatus(CREATED)
+    @Operation(
+            summary = "Order creation",
+            description = "This endpoint is used to create a new order in the database.",
+            responses =
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "Order created",
+                    content =
+                    @Content(
+                            mediaType = APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = Void.class))))
+    public Mono<Void> create(@RequestBody @Valid final OrderCreateRequest request) {
+
+        return Mono.just(request)
+                .map(orderMapper::toDTO)
+                .flatMap(orderService::create)
+                .then();//map(orderMapper::toResponse);
+    }
 
     //TODO: Adicionar produto
 
