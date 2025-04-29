@@ -19,7 +19,7 @@ public class OrderDTO {
     private String id;
     private LocalDateTime timestampCreatedDate;
     private OrderCustomerDTO customer;
-    private BigDecimal amount;
+    private BigDecimal totalAmount;
     private OrderStatus status;
 
     @Builder.Default

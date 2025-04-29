@@ -26,6 +26,9 @@ public class Description {
   public static final String PRODUCT_IMAGE_NAME = "Product image file name";
   public static final String PRODUCT_IMAGE_BYTES = "Product image bytes array";
 
+  //Order
+  public static final String ORDER_ID = "Product id";
+
   // Exception
   public static final String EXCEPTION_RESPONSE_TIMESTAMP_DESCRIPTION = "Date time of exception";
   public static final String EXCEPTION_RESPONSE_ERROR_DESCRIPTION = "Description of thrown exception";

@@ -5,6 +5,7 @@ import com.fiap.soat.mapper.OrderMapper;
 import com.fiap.soat.model.request.customer.CustomerCreateRequest;
 import com.fiap.soat.model.request.order.OrderCreateRequest;
 import com.fiap.soat.model.response.customer.CustomerResponse;
+import com.fiap.soat.model.response.order.OrderResponse;
 import com.fiap.soat.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -46,13 +47,13 @@ public class OrderController {
                     content =
                     @Content(
                             mediaType = APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = Void.class))))
-    public Mono<Void> create(@RequestBody @Valid final OrderCreateRequest request) {
+                            schema = @Schema(implementation = OrderResponse.class))))
+    public Mono<OrderResponse> create(@RequestBody @Valid final OrderCreateRequest request) {
 
         return Mono.just(request)
                 .map(orderMapper::toDTO)
                 .flatMap(orderService::create)
-                .then();//map(orderMapper::toResponse);
+                .map(orderMapper::toResponse);
     }
 
     //TODO: Adicionar produto

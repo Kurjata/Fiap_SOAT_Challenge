@@ -30,9 +30,9 @@ public class OrderDocument {
   @Field(name = "cliente")
   private OrderCustomerDocument customer;
 
-  @Field(name = "amount")
+  @Field(name = "valorTotal")
   @Builder.Default
-  private BigDecimal amount = BigDecimal.ZERO;
+  private BigDecimal totalAmount = BigDecimal.ZERO;
 
   @Builder.Default private OrderStatus status = OrderStatus.CREATED;
 
