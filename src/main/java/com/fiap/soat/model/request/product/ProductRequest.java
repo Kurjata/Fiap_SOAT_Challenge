@@ -16,10 +16,10 @@ import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_AMOUNT
 import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_INVALID;
 import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_REQUIRED;
 import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_NAME_REQUIRED;
-import static com.fiap.soat.constants.Description.PRODUCT_AMOUNT;
-import static com.fiap.soat.constants.Description.PRODUCT_CATEGORY;
+import static com.fiap.soat.constants.Description.PRODUCT_AMOUNT_DESCRIPTION;
+import static com.fiap.soat.constants.Description.PRODUCT_CATEGORY_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PRODUCT_DESCRIPTION;
-import static com.fiap.soat.constants.Description.PRODUCT_NAME;
+import static com.fiap.soat.constants.Description.PRODUCT_NAME_DESCRIPTION;
 import static com.fiap.soat.constants.Example.AMOUNT_EXAMPLE;
 import static com.fiap.soat.constants.Example.PRODUCT_DESCRIPTION_EXAMPLE;
 import static com.fiap.soat.constants.Example.PRODUCT_NAME_EXAMPLE;
@@ -29,16 +29,16 @@ import static com.fiap.soat.constants.Example.PRODUCT_NAME_EXAMPLE;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductRequest {
-  @Schema(description = PRODUCT_NAME, example = PRODUCT_NAME_EXAMPLE)
+  @Schema(description = PRODUCT_NAME_DESCRIPTION, example = PRODUCT_NAME_EXAMPLE)
   @NotBlank(message = PRODUCT_CREATE_NAME_REQUIRED)
   private String name;
 
-  @Schema(description = PRODUCT_CATEGORY, implementation = ProductCategory.class)
+  @Schema(description = PRODUCT_CATEGORY_DESCRIPTION, implementation = ProductCategory.class)
   @ValueOfEnum(enumClass = ProductCategory.class, message = PRODUCT_CREATE_CATEGORY_INVALID)
   @NotBlank(message = PRODUCT_CREATE_CATEGORY_REQUIRED)
   private String category;
 
-  @Schema(description = PRODUCT_AMOUNT, example = AMOUNT_EXAMPLE)
+  @Schema(description = PRODUCT_AMOUNT_DESCRIPTION, example = AMOUNT_EXAMPLE)
   @NotNull(message = PRODUCT_CREATE_AMOUNT_REQUIRED)
   private BigDecimal amount;
 

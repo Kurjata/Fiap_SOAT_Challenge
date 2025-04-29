@@ -39,7 +39,4 @@ public class ProductDocument {
   @Field(name = "descricao")
   private String description;
 
-  @Field(name = "imagens")
-  @Builder.Default
-  private List<ProductImageDocument> images = new ArrayList<>();
 }

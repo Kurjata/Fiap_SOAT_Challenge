@@ -17,4 +17,5 @@ public class Example {
   public static final String PRODUCT_NAME_EXAMPLE = "Burger";
   public static final String PRODUCT_DESCRIPTION_EXAMPLE = "Burger that has beef, onion, tomato and lettuce";
   public static final String PRODUCT_IMAGE_NAME_EXAMPLE = "image.png";
+
 }

@@ -11,23 +11,25 @@ public class Description {
   //Customer
   public static final String CUSTOMER_NAME_DESCRIPTION = "Customer name";
   public static final String CUSTOMER_TIMESTAMP_CREATE_DESCRIPTION = "Date time customer creation";
-  public static final String CUSTOMER_EMAIL = "Customer email";
+  public static final String CUSTOMER_EMAIL_DESCRIPTION = "Customer email";
 
   //Product
-  public static final String PRODUCT_ID = "Product id";
+  public static final String PRODUCT_ID_DESCRIPTION = "Product id";
   public static final String PRODUCT_TIMESTAMP_CREATE_DESCRIPTION = "Date time product creation";
-  public static final String PRODUCT_NAME = "Product name";
-  public static final String PRODUCT_CATEGORY = "Product category";
-  public static final String PRODUCT_AMOUNT = "Product amount";
+  public static final String PRODUCT_NAME_DESCRIPTION = "Product name";
+  public static final String PRODUCT_CATEGORY_DESCRIPTION = "Product category";
+  public static final String PRODUCT_AMOUNT_DESCRIPTION = "Product amount";
   public static final String PRODUCT_DESCRIPTION = "Product description";
-  public static final String PRODUCT_IMAGES = "Product image list";
-  public static final String PRODUCT_IMAGE_ID = "Product image id";
-  public static final String PRODUCT_IMAGE_TIMESTAMP_CREATED_DATE = "Product image timestamp created date";
-  public static final String PRODUCT_IMAGE_NAME = "Product image file name";
-  public static final String PRODUCT_IMAGE_BYTES = "Product image bytes array";
+
 
   //Order
-  public static final String ORDER_ID = "Product id";
+  public static final String ORDER_ID_DESCRIPTION = "Order id";
+  public static final String ORDER_TIMESTAMP_CREATE_DESCRIPTION = "Date time order creation";
+  public static final String ORDER_CUSTOMER_DESCRIPTION = "Order customer";
+  public static final String ORDER_TOTAL_AMOUNT_DESCRIPTION = "Total amount of the order";
+  public static final String ORDER_STATUS_DESCRIPTION = "Order status";
+  public static final String ORDER_PRODUCTS_DESCRIPTION = "Order products";
+
 
   // Exception
   public static final String EXCEPTION_RESPONSE_TIMESTAMP_DESCRIPTION = "Date time of exception";
