@@ -24,12 +24,6 @@ public interface OrderMapper extends EntityMapper {
 
   @Mapping(target = "id", qualifiedByName = "toObjectId")
   @Mapping(target = "timestampCreatedDate", ignore = true)
-  @Mapping(target = "totalAmount", ignore = true)
-  @Mapping(target = "status", ignore = true)
-  OrderDocument createToDocument(OrderDTO dto);
-
-  @Mapping(target = "id", qualifiedByName = "toObjectId")
-  @Mapping(target = "timestampCreatedDate", ignore = true)
   @Mapping(target = "totalAmount", expression = "java(dto.getTotalAmount())")
   OrderDocument toDocument(OrderDTO dto);
 
