@@ -14,6 +14,11 @@ import java.math.BigDecimal;
 public class OrderProductDTO {
     private String id;
     private BigDecimal amount;
+    private Integer quantity;
     private String name;
     private String description;
+
+    public BigDecimal getTotalAmount(){
+        return amount.multiply(BigDecimal.valueOf(quantity));
+    }
 }

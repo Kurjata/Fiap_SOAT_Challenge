@@ -1,5 +1,6 @@
 package com.fiap.soat.service;
 
+import com.fiap.soat.exception.BusinessException;
 import com.fiap.soat.exception.NotFoundException;
 import com.fiap.soat.mapper.OrderMapper;
 import com.fiap.soat.model.dto.order.OrderAddProductDTO;
@@ -13,8 +14,10 @@ import reactor.core.publisher.Mono;
 
 import java.util.function.Predicate;
 
+import static com.fiap.soat.model.enums.OrderStatus.CREATED;
 import static com.fiap.soat.model.enums.ServiceError.ORDER_NOT_EXISTS;
 import static com.fiap.soat.model.enums.ServiceError.ORDER_PRODUCT_EXISTS_IN_LIST;
+import static com.fiap.soat.model.enums.ServiceError.ORDER_STATUS_MUST_BE_CREATED;
 import static com.fiap.soat.model.enums.ServiceError.PRODUCT_NOT_EXISTS;
 
 @Service
@@ -27,7 +30,7 @@ public class OrderService {
 
   public Mono<OrderDTO> save(OrderDTO dto) {
     return Mono.just(dto)
-        .map(this.orderMapper::createToDocument)
+        .map(this.orderMapper::toDocument)
         .flatMap(this.orderRepository::save)
         .map(this.orderMapper::toDTO);
   }
@@ -35,6 +38,8 @@ public class OrderService {
   public Mono<OrderDTO> addProduct(OrderAddProductDTO dto) {
     return Mono.just(dto.getOrderId())
         .flatMap(this::getById)
+        .filter(order -> CREATED.equals(order.getStatus()))
+        .switchIfEmpty(Mono.error(new BusinessException(ORDER_STATUS_MUST_BE_CREATED)))
         .flatMap(
             order ->
                 getProductById(dto.getProductId())
@@ -42,6 +47,7 @@ public class OrderService {
                     .switchIfEmpty(Mono.error(new NotFoundException(ORDER_PRODUCT_EXISTS_IN_LIST)))
                     .map(
                         product -> {
+                          product.setQuantity(dto.getQuantity());
                           order.getProducts().add(product);
                           return order;
                         })

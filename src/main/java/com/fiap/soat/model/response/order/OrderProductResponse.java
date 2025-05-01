@@ -4,8 +4,10 @@ import static com.fiap.soat.constants.Description.PRODUCT_AMOUNT_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PRODUCT_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PRODUCT_ID_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PRODUCT_NAME_DESCRIPTION;
+import static com.fiap.soat.constants.Description.PRODUCT_QUANTITY_DESCRIPTION;
 import static com.fiap.soat.constants.Example.AMOUNT_EXAMPLE;
 import static com.fiap.soat.constants.Example.ID_EXAMPLE;
+import static com.fiap.soat.constants.Example.INTEGER_EXAMPLE;
 import static com.fiap.soat.constants.Example.PRODUCT_DESCRIPTION_EXAMPLE;
 import static com.fiap.soat.constants.Example.PRODUCT_NAME_EXAMPLE;
 
@@ -26,6 +28,9 @@ public class OrderProductResponse {
 
   @Schema(description = PRODUCT_AMOUNT_DESCRIPTION, example = AMOUNT_EXAMPLE)
   private BigDecimal amount;
+
+  @Schema(description = PRODUCT_QUANTITY_DESCRIPTION, example = INTEGER_EXAMPLE)
+  private Integer quantity;
 
   @Schema(description = PRODUCT_NAME_DESCRIPTION, example = PRODUCT_NAME_EXAMPLE)
   private String name;

@@ -29,7 +29,7 @@ public class OrderDTO {
 
   public BigDecimal getTotalAmount() {
     return products.stream()
-        .map(OrderProductDTO::getAmount)
+        .map(OrderProductDTO::getTotalAmount)
         .reduce(BigDecimal.ZERO, BigDecimal::add);
   }
 }

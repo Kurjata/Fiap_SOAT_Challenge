@@ -19,6 +19,7 @@ public class Description {
   public static final String PRODUCT_NAME_DESCRIPTION = "Product name";
   public static final String PRODUCT_CATEGORY_DESCRIPTION = "Product category";
   public static final String PRODUCT_AMOUNT_DESCRIPTION = "Product amount";
+  public static final String PRODUCT_QUANTITY_DESCRIPTION = "Quantity of products";
   public static final String PRODUCT_DESCRIPTION = "Product description";
 
 
