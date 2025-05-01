@@ -4,6 +4,7 @@ import com.fiap.soat.exception.NotFoundException;
 import com.fiap.soat.mapper.OrderMapper;
 import com.fiap.soat.model.dto.order.OrderAddProductDTO;
 import com.fiap.soat.model.dto.order.OrderDTO;
+import com.fiap.soat.model.dto.order.OrderProductDTO;
 import com.fiap.soat.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
@@ -14,6 +15,7 @@ import java.util.function.Predicate;
 
 import static com.fiap.soat.model.enums.ServiceError.ORDER_NOT_EXISTS;
 import static com.fiap.soat.model.enums.ServiceError.ORDER_PRODUCT_EXISTS_IN_LIST;
+import static com.fiap.soat.model.enums.ServiceError.PRODUCT_NOT_EXISTS;
 
 @Service
 @AllArgsConstructor
@@ -35,18 +37,23 @@ public class OrderService {
         .flatMap(this::getById)
         .flatMap(
             order ->
-                productService
-                    .getById(dto.getProductId())
+                getProductById(dto.getProductId())
                     .filter(Predicate.not(product -> order.existsProductInList(product.getId())))
-                    .map(this.orderMapper::toOrderProductDTO)
+                    .switchIfEmpty(Mono.error(new NotFoundException(ORDER_PRODUCT_EXISTS_IN_LIST)))
                     .map(
                         product -> {
                           order.getProducts().add(product);
+                          order.updateTotalAmount();
                           return order;
                         })
-                    .flatMap(this::save)
-                    .switchIfEmpty(
-                        Mono.error(new NotFoundException(ORDER_PRODUCT_EXISTS_IN_LIST))));
+                    .flatMap(this::save));
+  }
+
+  private Mono<OrderProductDTO> getProductById(String id) {
+    return productService
+        .getById(id)
+        .map(this.orderMapper::toOrderProductDTO)
+        .switchIfEmpty(Mono.error(new NotFoundException(PRODUCT_NOT_EXISTS)));
   }
 
   private Mono<OrderDTO> getById(String id) {

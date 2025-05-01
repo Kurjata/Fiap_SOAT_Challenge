@@ -27,4 +27,10 @@ public class OrderDTO {
   public boolean existsProductInList(String id) {
     return products.stream().anyMatch(product -> product.getId().equals(id));
   }
+
+  public void updateTotalAmount() {
+    this.totalAmount = products.stream()
+            .map(OrderProductDTO::getAmount)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+  }
 }
