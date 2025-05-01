@@ -3,8 +3,12 @@ package com.fiap.soat.mapper;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 import com.fiap.soat.model.document.order.OrderDocument;
+import com.fiap.soat.model.dto.order.OrderAddProductDTO;
 import com.fiap.soat.model.dto.order.OrderCustomerDTO;
 import com.fiap.soat.model.dto.order.OrderDTO;
+import com.fiap.soat.model.dto.order.OrderProductDTO;
+import com.fiap.soat.model.dto.product.ProductDTO;
+import com.fiap.soat.model.request.order.OrderAddProductRequest;
 import com.fiap.soat.model.request.order.OrderCreateRequest;
 import com.fiap.soat.model.response.order.OrderResponse;
 import org.apache.commons.lang3.StringUtils;
@@ -32,6 +36,10 @@ public interface OrderMapper extends EntityMapper {
   OrderDTO toDTO(OrderCreateRequest request);
 
   OrderResponse toResponse(OrderDTO dto);
+
+  OrderAddProductDTO toDTO(OrderAddProductRequest dto);
+
+  OrderProductDTO toOrderProductDTO(ProductDTO dto);
 
   @Named("toCustomerDTO")
   default OrderCustomerDTO toCustomerDTO(String documentNumber) {

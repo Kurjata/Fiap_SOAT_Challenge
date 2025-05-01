@@ -16,12 +16,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDTO {
-    private String id;
-    private LocalDateTime timestampCreatedDate;
-    private OrderCustomerDTO customer;
-    private BigDecimal totalAmount;
-    private OrderStatus status;
+  private String id;
+  private LocalDateTime timestampCreatedDate;
+  private OrderCustomerDTO customer;
+  private BigDecimal totalAmount;
+  private OrderStatus status;
 
-    @Builder.Default
-    private List<OrderProductDTO> products = new ArrayList<>();
+  @Builder.Default private List<OrderProductDTO> products = new ArrayList<>();
+
+  public boolean existsProductInList(String id) {
+    return products.stream().anyMatch(product -> product.getId().equals(id));
+  }
 }
