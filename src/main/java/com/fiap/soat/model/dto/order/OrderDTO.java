@@ -19,7 +19,6 @@ public class OrderDTO {
   private String id;
   private LocalDateTime timestampCreatedDate;
   private OrderCustomerDTO customer;
-  private BigDecimal totalAmount;
   private OrderStatus status;
 
   @Builder.Default private List<OrderProductDTO> products = new ArrayList<>();
@@ -28,9 +27,9 @@ public class OrderDTO {
     return products.stream().anyMatch(product -> product.getId().equals(id));
   }
 
-  public void updateTotalAmount() {
-    this.totalAmount = products.stream()
-            .map(OrderProductDTO::getAmount)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
+  public BigDecimal getTotalAmount() {
+    return products.stream()
+        .map(OrderProductDTO::getAmount)
+        .reduce(BigDecimal.ZERO, BigDecimal::add);
   }
 }

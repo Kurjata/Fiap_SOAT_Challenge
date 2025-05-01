@@ -35,6 +35,7 @@ public interface OrderMapper extends EntityMapper {
   @Mapping(target = "customer", source = "documentNumber", qualifiedByName = "toCustomerDTO")
   OrderDTO toDTO(OrderCreateRequest request);
 
+  @Mapping(target = "totalAmount", expression = "java(dto.getTotalAmount())")
   OrderResponse toResponse(OrderDTO dto);
 
   OrderAddProductDTO toDTO(OrderAddProductRequest dto);

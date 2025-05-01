@@ -43,7 +43,6 @@ public class OrderService {
                     .map(
                         product -> {
                           order.getProducts().add(product);
-                          order.updateTotalAmount();
                           return order;
                         })
                     .flatMap(this::save));

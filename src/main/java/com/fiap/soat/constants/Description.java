@@ -29,6 +29,7 @@ public class Description {
   public static final String ORDER_TOTAL_AMOUNT_DESCRIPTION = "Total amount of the order";
   public static final String ORDER_STATUS_DESCRIPTION = "Order status";
   public static final String ORDER_PRODUCTS_DESCRIPTION = "Order products";
+  public static final String ORDER_PRODUCT_QUANTITY_DESCRIPTION = "Item quantity";
 
 
   // Exception
