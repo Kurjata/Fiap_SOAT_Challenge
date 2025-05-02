@@ -12,11 +12,13 @@ import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import static com.fiap.soat.model.enums.OrderStatus.CREATED;
 import static com.fiap.soat.model.enums.ServiceError.ORDER_NOT_EXISTS;
 import static com.fiap.soat.model.enums.ServiceError.ORDER_PRODUCT_EXISTS_IN_LIST;
+import static com.fiap.soat.model.enums.ServiceError.ORDER_PRODUCT_NOT_EXISTS_IN_LIST;
 import static com.fiap.soat.model.enums.ServiceError.ORDER_STATUS_MUST_BE_CREATED;
 import static com.fiap.soat.model.enums.ServiceError.PRODUCT_NOT_EXISTS;
 
@@ -55,8 +57,9 @@ public class OrderService {
   }
 
   private Mono<OrderProductDTO> getProductById(String id) {
-    return productService
-        .getById(id)
+    return Mono.just(id)
+        .filter(ObjectId::isValid)
+        .flatMap(productService::getById)
         .map(this.orderMapper::toOrderProductDTO)
         .switchIfEmpty(Mono.error(new NotFoundException(PRODUCT_NOT_EXISTS)));
   }
@@ -68,5 +71,19 @@ public class OrderService {
         .flatMap(orderRepository::findById)
         .map(this.orderMapper::toDTO)
         .switchIfEmpty(Mono.error(new NotFoundException(ORDER_NOT_EXISTS)));
+  }
+
+  public Mono<OrderDTO> removeProduct(String orderId, String productId) {
+    return getById(orderId)
+        .filter(order -> CREATED.equals(order.getStatus()))
+        .switchIfEmpty(Mono.error(new BusinessException(ORDER_STATUS_MUST_BE_CREATED)))
+        .filter(order -> order.existsProductInList(productId))
+        .switchIfEmpty(Mono.error(new NotFoundException(ORDER_PRODUCT_NOT_EXISTS_IN_LIST)))
+        .map(
+            order -> {
+              order.removeProductInList(productId);
+              return order;
+            })
+        .flatMap(this::save);
   }
 }

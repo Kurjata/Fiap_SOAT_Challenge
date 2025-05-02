@@ -1,7 +1,11 @@
 package com.fiap.soat.rest;
 
+import static com.fiap.soat.constants.Description.ORDER_ID_DESCRIPTION;
+import static com.fiap.soat.constants.Description.PRODUCT_ID_DESCRIPTION;
+import static com.fiap.soat.constants.Example.ID_EXAMPLE;
 import static org.springframework.http.HttpStatus.ACCEPTED;
 import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.fiap.soat.constants.ExceptionSwagger;
@@ -11,6 +15,7 @@ import com.fiap.soat.model.request.order.OrderCreateRequest;
 import com.fiap.soat.model.response.order.OrderResponse;
 import com.fiap.soat.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -19,6 +24,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,14 +64,14 @@ public class OrderController {
   }
 
   @PatchMapping("/addProduct")
-  @ResponseStatus(ACCEPTED)
+  @ResponseStatus(OK)
   @Operation(
       summary = "Order add product",
-      description = "This endpoint is used to create a new order in the database.",
+      description = "This endpoint is used to add a product in the order.",
       responses =
           @ApiResponse(
-              responseCode = "202",
-              description = "Order add product accepted",
+              responseCode = "200",
+              description = "Added product to order",
               content =
                   @Content(
                       mediaType = APPLICATION_JSON_VALUE,
@@ -77,7 +83,28 @@ public class OrderController {
         .map(orderMapper::toResponse);
   }
 
-  // TODO: Remover produto
+  @PatchMapping("/deleteProduct/order/{orderId}/product/{productId}")
+  @ResponseStatus(OK)
+  @Operation(
+      summary = "Order remove product",
+      description = "This endpoint is used to remove a product in the order.",
+      responses =
+          @ApiResponse(
+              responseCode = "200",
+              description = "Removed product from order.",
+              content =
+                  @Content(
+                      mediaType = APPLICATION_JSON_VALUE,
+                      schema = @Schema(implementation = OrderResponse.class))))
+  public Mono<OrderResponse> removeProduct(
+      @Parameter(description = ORDER_ID_DESCRIPTION, schema = @Schema(example = ID_EXAMPLE))
+          @PathVariable
+          final String orderId,
+      @Parameter(description = PRODUCT_ID_DESCRIPTION, schema = @Schema(example = ID_EXAMPLE))
+          @PathVariable
+          final String productId) {
+    return this.orderService.removeProduct(orderId, productId).map(orderMapper::toResponse);
+  }
 
   // TODO: Cancelar pedido
 

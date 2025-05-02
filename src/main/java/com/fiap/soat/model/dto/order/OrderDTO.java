@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Data
 @Builder
@@ -25,6 +26,11 @@ public class OrderDTO {
 
   public boolean existsProductInList(String id) {
     return products.stream().anyMatch(product -> product.getId().equals(id));
+  }
+
+  public void removeProductInList(String id) {
+    this.products =
+        products.stream().filter(Predicate.not(product -> product.getId().equals(id))).toList();
   }
 
   public BigDecimal getTotalAmount() {
