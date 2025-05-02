@@ -1,6 +1,6 @@
 package com.fiap.soat.model.request.order;
 
-import static com.fiap.soat.constants.ControllerExceptions.ORDER_ADD_PRODUCT_ORDER_ID_REQUIRED;
+import static com.fiap.soat.constants.ControllerExceptions.ORDER_ID_REQUIRED;
 import static com.fiap.soat.constants.ControllerExceptions.ORDER_ADD_PRODUCT_PRODUCT_ID_REQUIRED;
 import static com.fiap.soat.constants.ControllerExceptions.ORDER_ADD_PRODUCT_QUANTITY_MIN_ONE;
 import static com.fiap.soat.constants.ControllerExceptions.ORDER_ADD_PRODUCT_QUANTITY_REQUIRED;
@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderAddProductRequest {
-  @NotBlank(message = ORDER_ADD_PRODUCT_ORDER_ID_REQUIRED)
+  @NotBlank(message = ORDER_ID_REQUIRED)
   @Schema(description = ORDER_ID_DESCRIPTION, example = ID_EXAMPLE)
   private String orderId;
 

@@ -69,7 +69,7 @@ public class OrderService {
         .switchIfEmpty(Mono.error(new NotFoundException(PRODUCT_NOT_EXISTS)));
   }
 
-  private Mono<OrderDTO> getById(String id) {
+  public Mono<OrderDTO> getById(String id) {
     return Mono.just(id)
         .filter(ObjectId::isValid)
         .map(ObjectId::new)

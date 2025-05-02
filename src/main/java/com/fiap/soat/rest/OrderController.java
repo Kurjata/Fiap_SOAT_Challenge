@@ -146,9 +146,6 @@ public class OrderController {
     return this.orderService.cancel(orderId).map(orderMapper::toResponse);
   }
 
-  // TODO: Criar chamada para criar pagamento (no primeiro momento só muda status pois não tem regra
-  // de negócio)
-
   @GetMapping
   @ResponseStatus(OK)
   @Operation(
@@ -191,8 +188,9 @@ public class OrderController {
               description = ORDER_STATUS_DESCRIPTION,
               schema = @Schema(implementation = OrderStatus.class))
           final String status) {
-    return Mono.just(this.orderMapper.toFilter(page, size, documentNumber, startDate, finalDate, status))
-            .flatMap(this.orderService::getByFilter)
-            .map(this.orderMapper::toPageResponse);
+    return Mono.just(
+            this.orderMapper.toFilter(page, size, documentNumber, startDate, finalDate, status))
+        .flatMap(this.orderService::getByFilter)
+        .map(this.orderMapper::toPageResponse);
   }
 }
