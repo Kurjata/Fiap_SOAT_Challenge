@@ -8,7 +8,7 @@ import static lombok.AccessLevel.PRIVATE;
 public class ControllerExceptions {
 
     public static final String DOCUMENT_NUMBER_INVALID = "DOCUMENT_NUMBER_INVALID";
-
+    public static final String DATE_TIME_INVALID_FORMAT = "DATE_TIME_INVALID_FORMAT";
 
     //Customer
     public static final String CUSTOMER_CREATE_DOCUMENT_NUMBER_REQUIRED = "CUSTOMER_CREATE_DOCUMENT_NUMBER_REQUIRED";

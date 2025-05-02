@@ -1,5 +1,7 @@
 package com.fiap.soat.rest;
 
+import static com.fiap.soat.constants.Constants.PAGE_DEFAULT;
+import static com.fiap.soat.constants.Constants.SIZE_DEFAULT;
 import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_INVALID;
 import static com.fiap.soat.constants.Description.PAGE_PARAMETER_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PAGE_PARAMETER_SIZE_DESCRIPTION;
@@ -133,10 +135,10 @@ public class ProductController {
           @Valid
           @ValueOfEnum(enumClass = ProductCategory.class, message = PRODUCT_CREATE_CATEGORY_INVALID)
           final String category,
-      @RequestParam(required = false, defaultValue = "0")
+      @RequestParam(required = false, defaultValue = PAGE_DEFAULT)
           @Parameter(description = PAGE_PARAMETER_DESCRIPTION)
           final Integer page,
-      @RequestParam(required = false, defaultValue = "20")
+      @RequestParam(required = false, defaultValue = SIZE_DEFAULT)
           @Parameter(description = PAGE_PARAMETER_SIZE_DESCRIPTION)
           final Integer size) {
 

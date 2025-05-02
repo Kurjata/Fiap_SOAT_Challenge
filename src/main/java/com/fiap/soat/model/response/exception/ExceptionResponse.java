@@ -1,7 +1,7 @@
 package com.fiap.soat.model.response.exception;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
-import static com.fiap.soat.constants.DateConstants.DATE_TIME_PATTERN;
+import static com.fiap.soat.constants.Constants.DATE_TIME_PATTERN;
 import static com.fiap.soat.constants.Description.EXCEPTION_RESPONSE_ERROR_DESCRIPTION;
 import static com.fiap.soat.constants.Description.EXCEPTION_RESPONSE_HTTP_STATUS_DESCRIPTION;
 import static com.fiap.soat.constants.Description.EXCEPTION_RESPONSE_LIST_FIELD_DESCRIPTION;

@@ -1,6 +1,6 @@
 package com.fiap.soat.model.response.product;
 
-import static com.fiap.soat.constants.DateConstants.DATE_TIME_PATTERN;
+import static com.fiap.soat.constants.Constants.DATE_TIME_PATTERN;
 import static com.fiap.soat.constants.Description.PRODUCT_AMOUNT_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PRODUCT_CATEGORY_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PRODUCT_DESCRIPTION;

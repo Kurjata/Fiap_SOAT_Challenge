@@ -26,6 +26,8 @@ public class Description {
   //Order
   public static final String ORDER_ID_DESCRIPTION = "Order id";
   public static final String ORDER_TIMESTAMP_CREATE_DESCRIPTION = "Date time order creation";
+  public static final String ORDER_TIMESTAMP_CREATE_START_DESCRIPTION = "Date time order creation initial search";
+  public static final String ORDER_TIMESTAMP_CREATE_END_DESCRIPTION = "Date time order creation end search";
   public static final String ORDER_CUSTOMER_DESCRIPTION = "Order customer";
   public static final String ORDER_TOTAL_AMOUNT_DESCRIPTION = "Total amount of the order";
   public static final String ORDER_STATUS_DESCRIPTION = "Order status";
