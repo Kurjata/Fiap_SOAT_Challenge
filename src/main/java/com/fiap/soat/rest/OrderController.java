@@ -3,7 +3,6 @@ package com.fiap.soat.rest;
 import static com.fiap.soat.constants.Description.ORDER_ID_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PRODUCT_ID_DESCRIPTION;
 import static com.fiap.soat.constants.Example.ID_EXAMPLE;
-import static org.springframework.http.HttpStatus.ACCEPTED;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -107,24 +106,24 @@ public class OrderController {
     return this.orderService.removeProduct(orderId, productId).map(orderMapper::toResponse);
   }
 
-  @DeleteMapping
+  @DeleteMapping("/{orderId}")
   @ResponseStatus(OK)
   @Operation(
-          summary = "Cancel order",
-          description = "This endpoint is used to cancel order.",
-          responses =
+      summary = "Cancel order",
+      description = "This endpoint is used to cancel order.",
+      responses =
           @ApiResponse(
-                  responseCode = "200",
-                  description = "Canceled order.",
-                  content =
+              responseCode = "200",
+              description = "Canceled order.",
+              content =
                   @Content(
-                          mediaType = APPLICATION_JSON_VALUE,
-                          schema = @Schema(implementation = OrderResponse.class))))
+                      mediaType = APPLICATION_JSON_VALUE,
+                      schema = @Schema(implementation = OrderResponse.class))))
   public Mono<OrderResponse> cancel(
-          @Parameter(description = ORDER_ID_DESCRIPTION, schema = @Schema(example = ID_EXAMPLE))
+      @Parameter(description = ORDER_ID_DESCRIPTION, schema = @Schema(example = ID_EXAMPLE))
           @PathVariable
           final String orderId) {
-      return this.orderService.cancel(orderId).map(orderMapper::toResponse);
+    return this.orderService.cancel(orderId).map(orderMapper::toResponse);
   }
 
   // TODO: Criar chamada para criar pagamento (no primeiro momento só muda status pois não tem regra

@@ -102,12 +102,11 @@ public class OrderService {
   }
 
   private Mono<OrderDTO> routeCancel(OrderDTO dto) {
-    switch (dto.getStatus()) {
-      case PAID -> Mono.error(new BusinessException(ORDER_STATUS_PAID_NOT_CANCEL));
-      case WAITING_FOR_PAYMENT -> Mono.just(dto);
+    return switch (dto.getStatus()) {
+      case CREATED, WAITING_FOR_PAYMENT -> Mono.just(dto);
       // TODO: Ver lógica de waiting for payment quando integrar mercado pago;
+      case PAID -> Mono.error(new BusinessException(ORDER_STATUS_PAID_NOT_CANCEL));
       case CANCELED -> Mono.error(new BusinessException(ORDER_STATUS_IS_ALREADY_CANCELLED));
-    }
-    return Mono.just(dto);
+    };
   }
 }
