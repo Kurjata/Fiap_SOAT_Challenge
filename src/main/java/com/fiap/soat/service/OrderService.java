@@ -5,10 +5,12 @@ import com.fiap.soat.exception.NotFoundException;
 import com.fiap.soat.mapper.OrderMapper;
 import com.fiap.soat.model.dto.order.OrderAddProductDTO;
 import com.fiap.soat.model.dto.order.OrderDTO;
+import com.fiap.soat.model.dto.order.OrderFilterDTO;
 import com.fiap.soat.model.dto.order.OrderProductDTO;
 import com.fiap.soat.repository.OrderRepository;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -109,4 +111,16 @@ public class OrderService {
       case CANCELED -> Mono.error(new BusinessException(ORDER_STATUS_IS_ALREADY_CANCELLED));
     };
   }
+
+    public Mono<PageImpl<OrderDTO>> getByFilter(OrderFilterDTO filter) {
+    return this.orderRepository
+        .getCountByFilter(filter)
+        .flatMap(
+            total ->
+                this.orderRepository
+                    .getByFilter(filter)
+                    .map(this.orderMapper::toDTO)
+                    .collectList()
+                    .map(list -> new PageImpl<>(list, filter.getPageable(), total)));
+    }
 }

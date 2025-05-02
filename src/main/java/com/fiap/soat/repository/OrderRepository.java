@@ -15,6 +15,6 @@ public interface OrderRepository extends ReactiveMongoRepository<OrderDocument, 
     }
 
     default Mono<Long> getCountByFilter(OrderFilterDTO filter) {
-        return filter.getContext().count(filter.getCountQuery(), Long.class);
+        return filter.getContext().count(filter.getCountQuery(), OrderDocument.class);
     }
 }

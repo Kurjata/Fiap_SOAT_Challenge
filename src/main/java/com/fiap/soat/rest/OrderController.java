@@ -191,6 +191,8 @@ public class OrderController {
               description = ORDER_STATUS_DESCRIPTION,
               schema = @Schema(implementation = OrderStatus.class))
           final String status) {
-    return Mono.empty();
+    return Mono.just(this.orderMapper.toFilter(page, size, documentNumber, startDate, finalDate, status))
+            .flatMap(this.orderService::getByFilter)
+            .map(this.orderMapper::toPageResponse);
   }
 }

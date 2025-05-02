@@ -26,7 +26,7 @@ public abstract class FilterDTO {
       return SpringContext.getBean();
   }
 
-  protected Pageable getPageable() {
+  public Pageable getPageable() {
     return PageRequest.of(this.page, this.size);
   }
 

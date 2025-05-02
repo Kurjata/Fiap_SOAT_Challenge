@@ -24,7 +24,7 @@ public class OrderFilterDTO extends FilterDTO {
 
   private LocalDateTime startDate;
 
-  private LocalDateTime endDate;
+  private LocalDateTime finalDate;
 
   private OrderStatus status;
 
@@ -35,13 +35,13 @@ public class OrderFilterDTO extends FilterDTO {
     if (StringUtils.isNotBlank(documentNumber))
       criteria.and("customer.documentNumber").is(documentNumber);
 
-    if (Objects.nonNull(status)) criteria.and("status").is(status);
+    if (Objects.nonNull(status)) criteria.and("status").is(status.name());
 
-    if (Objects.nonNull(startDate) && Objects.nonNull(endDate))
-      criteria.gte(startDate).lte(endDate);
+    if (Objects.nonNull(startDate) && Objects.nonNull(finalDate))
+      criteria.and("timestampCreatedDate").gte(startDate).lte(finalDate);
     else {
-      if (Objects.nonNull(startDate)) criteria.gte(startDate);
-      else criteria.lte(endDate);
+      if (Objects.nonNull(startDate)) criteria.and("timestampCreatedDate").gte(startDate);
+      if (Objects.nonNull(finalDate)) criteria.and("timestampCreatedDate").lte(finalDate);
     }
 
     return criteria;
