@@ -15,11 +15,14 @@ import reactor.core.publisher.Mono;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import static com.fiap.soat.model.enums.OrderStatus.CANCELED;
 import static com.fiap.soat.model.enums.OrderStatus.CREATED;
 import static com.fiap.soat.model.enums.ServiceError.ORDER_NOT_EXISTS;
 import static com.fiap.soat.model.enums.ServiceError.ORDER_PRODUCT_EXISTS_IN_LIST;
 import static com.fiap.soat.model.enums.ServiceError.ORDER_PRODUCT_NOT_EXISTS_IN_LIST;
+import static com.fiap.soat.model.enums.ServiceError.ORDER_STATUS_IS_ALREADY_CANCELLED;
 import static com.fiap.soat.model.enums.ServiceError.ORDER_STATUS_MUST_BE_CREATED;
+import static com.fiap.soat.model.enums.ServiceError.ORDER_STATUS_PAID_NOT_CANCEL;
 import static com.fiap.soat.model.enums.ServiceError.PRODUCT_NOT_EXISTS;
 
 @Service
@@ -85,5 +88,26 @@ public class OrderService {
               return order;
             })
         .flatMap(this::save);
+  }
+
+  public Mono<OrderDTO> cancel(String orderId) {
+    return getById(orderId)
+        .flatMap(this::routeCancel)
+        .map(
+            order -> {
+              order.setStatus(CANCELED);
+              return order;
+            })
+        .flatMap(this::save);
+  }
+
+  private Mono<OrderDTO> routeCancel(OrderDTO dto) {
+    switch (dto.getStatus()) {
+      case PAID -> Mono.error(new BusinessException(ORDER_STATUS_PAID_NOT_CANCEL));
+      case WAITING_FOR_PAYMENT -> Mono.just(dto);
+      // TODO: Ver lógica de waiting for payment quando integrar mercado pago;
+      case CANCELED -> Mono.error(new BusinessException(ORDER_STATUS_IS_ALREADY_CANCELLED));
+    }
+    return Mono.just(dto);
   }
 }

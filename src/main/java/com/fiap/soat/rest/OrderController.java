@@ -23,6 +23,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -106,7 +107,25 @@ public class OrderController {
     return this.orderService.removeProduct(orderId, productId).map(orderMapper::toResponse);
   }
 
-  // TODO: Cancelar pedido
+  @DeleteMapping
+  @ResponseStatus(OK)
+  @Operation(
+          summary = "Cancel order",
+          description = "This endpoint is used to cancel order.",
+          responses =
+          @ApiResponse(
+                  responseCode = "200",
+                  description = "Canceled order.",
+                  content =
+                  @Content(
+                          mediaType = APPLICATION_JSON_VALUE,
+                          schema = @Schema(implementation = OrderResponse.class))))
+  public Mono<OrderResponse> cancel(
+          @Parameter(description = ORDER_ID_DESCRIPTION, schema = @Schema(example = ID_EXAMPLE))
+          @PathVariable
+          final String orderId) {
+      return this.orderService.cancel(orderId).map(orderMapper::toResponse);
+  }
 
   // TODO: Criar chamada para criar pagamento (no primeiro momento só muda status pois não tem regra
   // de negócio)
