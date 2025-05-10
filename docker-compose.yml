@@ -1,0 +1,22 @@
+services:
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"  # Porta da aplicação
+      - "5005:5005"  # Porta de debug
+    volumes:
+      - ./src:/app/src  # Hot-reload do código fonte
+      - ~/.m2:/root/.m2  # Cache do Maven
+      - ./entrypoint.sh:/app/entrypoint.sh
+    environment:
+      - SPRING_PROFILES_ACTIVE=local
+    entrypoint: ./entrypoint.sh
+
+  database:
+    image: mongo:8.0
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
