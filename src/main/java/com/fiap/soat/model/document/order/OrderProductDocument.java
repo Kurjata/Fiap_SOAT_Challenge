@@ -15,8 +15,11 @@ import java.math.BigDecimal;
 public class OrderProductDocument {
   private String id;
 
-  @Field(name = "amount")
+  @Field(name = "valor")
   private BigDecimal amount;
+
+  @Field(name = "quantidade")
+  private Integer quantity;
 
   @Field(name = "nome")
   private String name;

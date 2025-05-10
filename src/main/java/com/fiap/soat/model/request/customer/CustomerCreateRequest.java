@@ -5,7 +5,7 @@ import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_CREATE_DOCUM
 import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_CREATE_NAME_REQUIRED;
 import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_EMAIL_INVALID;
 import static com.fiap.soat.constants.ControllerExceptions.CUSTOMER_EMAIL_REQUIRED;
-import static com.fiap.soat.constants.Description.CUSTOMER_EMAIL;
+import static com.fiap.soat.constants.Description.CUSTOMER_EMAIL_DESCRIPTION;
 import static com.fiap.soat.constants.Description.CUSTOMER_NAME_DESCRIPTION;
 import static com.fiap.soat.constants.Description.DOCUMENT_NUMBER_DESCRIPTION;
 import static com.fiap.soat.constants.Example.DOCUMENT_NUMBER_EXAMPLE;
@@ -36,7 +36,7 @@ public class CustomerCreateRequest {
   @NotBlank(message = CUSTOMER_CREATE_NAME_REQUIRED)
   private String name;
 
-  @Schema(description = CUSTOMER_EMAIL, example = EMAIL_EXAMPLE)
+  @Schema(description = CUSTOMER_EMAIL_DESCRIPTION, example = EMAIL_EXAMPLE)
   @NotBlank(message = CUSTOMER_EMAIL_REQUIRED)
   @Email(message = CUSTOMER_EMAIL_INVALID)
   private String email;

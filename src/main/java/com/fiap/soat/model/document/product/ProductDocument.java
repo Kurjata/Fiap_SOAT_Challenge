@@ -21,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDocument {
-  @Id @Builder.Default private ObjectId id = new ObjectId();
+  @Id private ObjectId id;
 
   @Field(name = "dataHoraCriacao")
   @Builder.Default
@@ -39,7 +39,4 @@ public class ProductDocument {
   @Field(name = "descricao")
   private String description;
 
-  @Field(name = "imagens")
-  @Builder.Default
-  private List<ProductImageDocument> images = new ArrayList<>();
 }

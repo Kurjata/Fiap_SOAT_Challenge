@@ -1,10 +1,12 @@
 package com.fiap.soat.rest;
 
+import static com.fiap.soat.constants.Constants.PAGE_DEFAULT;
+import static com.fiap.soat.constants.Constants.SIZE_DEFAULT;
 import static com.fiap.soat.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_INVALID;
 import static com.fiap.soat.constants.Description.PAGE_PARAMETER_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PAGE_PARAMETER_SIZE_DESCRIPTION;
-import static com.fiap.soat.constants.Description.PRODUCT_CATEGORY;
-import static com.fiap.soat.constants.Description.PRODUCT_ID;
+import static com.fiap.soat.constants.Description.PRODUCT_CATEGORY_DESCRIPTION;
+import static com.fiap.soat.constants.Description.PRODUCT_ID_DESCRIPTION;
 import static com.fiap.soat.constants.Example.ID_EXAMPLE;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
@@ -86,7 +88,7 @@ public class ProductController {
                       mediaType = APPLICATION_JSON_VALUE,
                       schema = @Schema(implementation = ProductResponse.class))))
   public Mono<ProductResponse> update(
-      @PathVariable @Parameter(description = PRODUCT_ID, example = ID_EXAMPLE) final String id,
+      @PathVariable @Parameter(description = PRODUCT_ID_DESCRIPTION, example = ID_EXAMPLE) final String id,
       @RequestBody @Valid final ProductRequest request) {
     return Mono.just(request)
         .map(r -> productMapper.toDTO(r, id))
@@ -108,7 +110,7 @@ public class ProductController {
                       mediaType = APPLICATION_JSON_VALUE,
                       schema = @Schema(implementation = ProductResponse.class))))
   public Mono<Void> delete(
-      @PathVariable @Parameter(description = PRODUCT_ID, example = ID_EXAMPLE) final String id) {
+      @PathVariable @Parameter(description = PRODUCT_ID_DESCRIPTION, example = ID_EXAMPLE) final String id) {
     return productService.delete(id);
   }
 
@@ -128,15 +130,15 @@ public class ProductController {
   public Mono<ProductPageResponse> getByCategory(
       @PathVariable
           @Parameter(
-              description = PRODUCT_CATEGORY,
+              description = PRODUCT_CATEGORY_DESCRIPTION,
               schema = @Schema(implementation = ProductCategory.class))
           @Valid
           @ValueOfEnum(enumClass = ProductCategory.class, message = PRODUCT_CREATE_CATEGORY_INVALID)
           final String category,
-      @RequestParam(required = false, defaultValue = "0")
+      @RequestParam(required = false, defaultValue = PAGE_DEFAULT)
           @Parameter(description = PAGE_PARAMETER_DESCRIPTION)
           final Integer page,
-      @RequestParam(required = false, defaultValue = "20")
+      @RequestParam(required = false, defaultValue = SIZE_DEFAULT)
           @Parameter(description = PAGE_PARAMETER_SIZE_DESCRIPTION)
           final Integer size) {
 

@@ -1,22 +1,17 @@
 package com.fiap.soat.mapper;
 
+import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
+
 import com.fiap.soat.model.document.product.ProductDocument;
 import com.fiap.soat.model.dto.product.ProductDTO;
 import com.fiap.soat.model.request.product.ProductRequest;
-import com.fiap.soat.model.response.PageResponse;
 import com.fiap.soat.model.response.product.ProductPageResponse;
 import com.fiap.soat.model.response.product.ProductResponse;
-import org.apache.commons.lang3.StringUtils;
-import org.bson.types.ObjectId;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-
-import java.util.List;
-
-import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
 public interface ProductMapper extends EntityMapper {

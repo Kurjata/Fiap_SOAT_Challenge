@@ -10,18 +10,32 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDTO {
-    private String id;
-    private LocalDateTime timestampCreatedDate;
-    private OrderCustomerDTO customer;
-    private BigDecimal amount;
-    private OrderStatus status;
+  private String id;
+  private LocalDateTime timestampCreatedDate;
+  private OrderCustomerDTO customer;
+  private OrderStatus status;
 
-    @Builder.Default
-    private List<OrderProductDTO> products = new ArrayList<>();
+  @Builder.Default private List<OrderProductDTO> products = new ArrayList<>();
+
+  public boolean existsProductInList(String id) {
+    return products.stream().anyMatch(product -> product.getId().equals(id));
+  }
+
+  public void removeProductInList(String id) {
+    this.products =
+        products.stream().filter(Predicate.not(product -> product.getId().equals(id))).toList();
+  }
+
+  public BigDecimal getTotalAmount() {
+    return products.stream()
+        .map(OrderProductDTO::getTotalAmount)
+        .reduce(BigDecimal.ZERO, BigDecimal::add);
+  }
 }

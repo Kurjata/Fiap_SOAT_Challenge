@@ -29,18 +29,21 @@ public class ProductService {
   }
 
   public Mono<ProductDTO> update(ProductDTO dto) {
-    return Mono.just(dto.getId()).flatMap(this::getById).map(productMapper::toDTO);
+    return Mono.just(dto.getId()).flatMap(this::getById);
   }
 
   public Mono<Void> delete(String id) {
-    return getById(id).flatMap(productRepository::delete);
+    return getById(id)
+            .map(productMapper::toDocument)
+            .flatMap(productRepository::delete);
   }
 
-  private Mono<ProductDocument> getById(String id) {
+  public Mono<ProductDTO> getById(String id) {
     return Mono.just(id)
         .filter(ObjectId::isValid)
         .map(ObjectId::new)
         .flatMap(productRepository::findById)
+        .map(productMapper::toDTO)
         .switchIfEmpty(Mono.error(new NotFoundException(PRODUCT_NOT_EXISTS)));
   }
 
