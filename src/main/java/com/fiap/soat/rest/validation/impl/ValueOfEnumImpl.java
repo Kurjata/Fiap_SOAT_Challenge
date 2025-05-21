@@ -1,13 +1,11 @@
 package com.fiap.soat.rest.validation.impl;
 
 import com.fiap.soat.rest.validation.ValueOfEnum;
-import io.netty.util.internal.StringUtil;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 public class ValueOfEnumImpl implements ConstraintValidator<ValueOfEnum, String> {
   List<String> values;
