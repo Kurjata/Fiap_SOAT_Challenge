@@ -44,8 +44,12 @@ public interface OrderMapper extends EntityMapper {
 
   OrderProductDTO toOrderProductDTO(ProductDTO dto);
 
-  @Mapping(target = "startDate", expression = "java(com.fiap.soat.util.DateUtil.toDateTime(startDate))")
-  @Mapping(target = "finalDate", expression = "java(com.fiap.soat.util.DateUtil.toDateTime(finalDate))")
+  @Mapping(
+      target = "startDate",
+      expression = "java(com.fiap.soat.util.DateUtil.toDateTime(startDate))")
+  @Mapping(
+      target = "finalDate",
+      expression = "java(com.fiap.soat.util.DateUtil.toDateTime(finalDate))")
   OrderFilterDTO toFilter(
       Integer page,
       Integer size,

@@ -58,7 +58,7 @@ public class QueueController {
                   @Content(
                       mediaType = APPLICATION_JSON_VALUE,
                       schema = @Schema(implementation = QueuePageResponse.class))))
-  public Mono<Void> getByFilter(
+  public Mono<QueuePageResponse> getByFilter(
       @RequestParam(required = false, defaultValue = PAGE_DEFAULT)
           @Parameter(description = PAGE_PARAMETER_DESCRIPTION)
           final Integer page,
@@ -83,7 +83,9 @@ public class QueueController {
               description = QUEUE_STATUS_DESCRIPTION,
               schema = @Schema(implementation = QueueTrackingStatus.class))
           final String status) {
-    return Mono.empty();
+    return Mono.just(this.queueMapper.toFilter(page, size, startDate, finalDate, status))
+        .flatMap(this.queueService::getByFilter)
+        .map(this.queueMapper::toPageResponse);
   }
 
   // TODO: get by id

@@ -1,6 +1,10 @@
 package com.fiap.soat.model.dto;
 
+import static org.springframework.data.domain.Sort.Direction.DESC;
+
 import com.fiap.soat.util.SpringContext;
+import java.time.LocalDateTime;
+import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,12 +35,29 @@ public abstract class FilterDTO {
   }
 
   public Query getQuery() {
+    return getQuery("timestampCreatedDate", DESC);
+  }
+  
+  public Query getQuery(String orderField) {
+    return getQuery(orderField, DESC);
+  }
+
+  public Query getQuery(String orderField, Sort.Direction sort) {
     return new Query(getCriteria())
         .with(getPageable())
-        .with(Sort.by(Sort.Direction.DESC, "timestampCreatedDate"));
+        .with(Sort.by(sort, orderField));
   }
 
   public Query getCountQuery() {
     return new Query(getCriteria());
+  }
+
+  protected void filterLocalDateTime(Criteria criteria, String field, LocalDateTime start, LocalDateTime end) {
+    if (Objects.nonNull(start) && Objects.nonNull(end))
+      criteria.and(field).gte(start).lte(end);
+    else {
+      if (Objects.nonNull(start)) criteria.and(field).gte(start);
+      if (Objects.nonNull(end)) criteria.and(field).lte(end);
+    }
   }
 }
