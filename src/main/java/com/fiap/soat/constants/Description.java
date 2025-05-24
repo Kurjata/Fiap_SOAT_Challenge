@@ -34,6 +34,10 @@ public class Description {
   public static final String ORDER_PRODUCTS_DESCRIPTION = "Order products";
   public static final String ORDER_PRODUCT_QUANTITY_DESCRIPTION = "Item quantity";
 
+  //Queue
+  public static final String QUEUE_STATUS_DESCRIPTION = "Queue status";
+  public static final String QUEUE_TIMESTAMP_CURRENT_STATUS_START_DESCRIPTION = "Date time current status initial search";
+  public static final String QUEUE_TIMESTAMP_CURRENT_STATUS_END_DESCRIPTION = "Date time current status end search";
 
   // Exception
   public static final String EXCEPTION_RESPONSE_TIMESTAMP_DESCRIPTION = "Date time of exception";
