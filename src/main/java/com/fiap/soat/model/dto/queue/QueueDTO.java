@@ -22,7 +22,7 @@ public class QueueDTO {
 
   private LocalDateTime timestampCurrentStatus;
 
-  private String surname;
+  private String nickname;
 
   @Builder.Default private List<QueueHistoryDTO> history = new ArrayList<>();
 

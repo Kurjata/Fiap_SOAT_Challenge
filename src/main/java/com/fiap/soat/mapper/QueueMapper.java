@@ -27,7 +27,7 @@ public interface QueueMapper extends EntityMapper {
   QueueDTO toDTO(QueueDocument document);
 
   @Mapping(target = "id", ignore = true)
-  @Mapping(target = "surname", ignore = true)
+  @Mapping(target = "nickname", ignore = true)
   @Mapping(target = "status", ignore = true)
   @Mapping(target = "orderId", source = "id")
   @Mapping(target = "items", source = "products")

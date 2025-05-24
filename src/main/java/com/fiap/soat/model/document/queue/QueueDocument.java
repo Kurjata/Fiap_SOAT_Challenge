@@ -36,7 +36,7 @@ public class QueueDocument {
 
   @Field(name = "apelido")
   @Builder.Default
-  private String surname = String.valueOf(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
+  private String nickname = String.valueOf(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC));
 
   private List<QueueOrderItemsDocument> items;
 
