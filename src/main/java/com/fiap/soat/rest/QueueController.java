@@ -6,10 +6,12 @@ import static com.fiap.soat.constants.Constants.SWAGGER_TYPE_DATE_TIME;
 import static com.fiap.soat.constants.ControllerExceptions.DATE_TIME_INVALID_FORMAT;
 import static com.fiap.soat.constants.Description.PAGE_PARAMETER_DESCRIPTION;
 import static com.fiap.soat.constants.Description.PAGE_PARAMETER_SIZE_DESCRIPTION;
+import static com.fiap.soat.constants.Description.QUEUE_ID_DESCRIPTION;
 import static com.fiap.soat.constants.Description.QUEUE_STATUS_DESCRIPTION;
 import static com.fiap.soat.constants.Description.QUEUE_TIMESTAMP_CURRENT_STATUS_END_DESCRIPTION;
 import static com.fiap.soat.constants.Description.QUEUE_TIMESTAMP_CURRENT_STATUS_START_DESCRIPTION;
 import static com.fiap.soat.constants.Example.DATE_TIME_EXAMPLE;
+import static com.fiap.soat.constants.Example.ID_EXAMPLE;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -17,6 +19,7 @@ import com.fiap.soat.constants.ExceptionSwagger;
 import com.fiap.soat.mapper.QueueMapper;
 import com.fiap.soat.model.enums.QueueTrackingStatus;
 import com.fiap.soat.model.response.queue.QueuePageResponse;
+import com.fiap.soat.model.response.queue.QueueResponse;
 import com.fiap.soat.rest.validation.DateTimeFormat;
 import com.fiap.soat.rest.validation.ValueOfEnum;
 import com.fiap.soat.service.QueueService;
@@ -29,6 +32,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -49,7 +54,7 @@ public class QueueController {
   @ResponseStatus(OK)
   @Operation(
       summary = "Queue get list",
-      description = "This endpoint is used to get queues order by timestampCurrentStatus desc",
+      description = "This endpoint is used to get queues order by timestampCurrentStatus",
       responses =
           @ApiResponse(
               responseCode = "200",
@@ -88,6 +93,25 @@ public class QueueController {
         .map(this.queueMapper::toPageResponse);
   }
 
+  @PostMapping("/next-status/{id}")
+  @ResponseStatus(OK)
+  @Operation(
+      summary = "Evolve queue record status",
+      description = "This endpoint is intended to evolve the status of the queue record",
+      responses =
+          @ApiResponse(
+              responseCode = "200",
+              description = "Queue searched",
+              content =
+                  @Content(
+                      mediaType = APPLICATION_JSON_VALUE,
+                      schema = @Schema(implementation = QueueResponse.class))))
+  public Mono<QueueResponse> nextStatus(
+      @PathVariable
+          @Parameter(description = QUEUE_ID_DESCRIPTION, schema = @Schema(example = ID_EXAMPLE))
+          final String id) {
+    return Mono.just(id).flatMap(this.queueService::nextStatus).map(this.queueMapper::toResponse);
+  }
   // TODO: get by id
   // TODO: buscar o próximo da fila para o status
   // TODO: evoluir status pelo id
