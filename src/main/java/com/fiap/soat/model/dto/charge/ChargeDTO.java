@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ChargeDTO {
     private String orderId;
+    private String queueId;
 }

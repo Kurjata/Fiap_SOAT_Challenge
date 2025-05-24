@@ -3,6 +3,7 @@ package com.fiap.soat.model.document.queue;
 import com.fiap.soat.model.enums.QueueTrackingStatus;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,6 +14,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import static com.fiap.soat.model.enums.QueueTrackingStatus.RECEIVED;
+
 @Data
 @Builder
 @Document(collection = "fila")
@@ -21,14 +24,15 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class QueueDocument {
   @Id private ObjectId id;
 
-  @Field(name = "dataHoraCriacao")
-  @Builder.Default
-  private LocalDateTime timestampCreatedDate = LocalDateTime.now();
-
   @Field(name = "pedidoId")
   private String orderId;
 
-  private QueueTrackingStatus status;
+  @Builder.Default
+  private QueueTrackingStatus status = RECEIVED;
+
+  @Field(name = "dataHoraStatusAtual")
+  @Builder.Default
+  private LocalDateTime timestampCurrentStatus = LocalDateTime.now();
 
   @Field(name = "apelido")
   @Builder.Default
@@ -37,5 +41,6 @@ public class QueueDocument {
   private List<QueueOrderItemsDocument> items;
 
   @Field(name = "historico")
-  private List<QueueHistoryDocument> history;
+  @Builder.Default
+  private List<QueueHistoryDocument> history = new ArrayList<>();
 }

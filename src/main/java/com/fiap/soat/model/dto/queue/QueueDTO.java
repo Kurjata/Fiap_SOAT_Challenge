@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 public class QueueDTO {
   private String id;
 
-  private LocalDateTime timestampCreatedDate;
-
   private String orderId;
 
   private QueueTrackingStatus status;
+
+  private LocalDateTime timestampCurrentStatus;
 
   private String surname;
 

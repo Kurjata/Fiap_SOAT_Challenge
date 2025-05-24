@@ -1,6 +1,8 @@
 package com.fiap.soat.service;
 
 import com.fiap.soat.mapper.QueueMapper;
+import com.fiap.soat.model.document.queue.QueueDocument;
+import com.fiap.soat.model.document.queue.QueueHistoryDocument;
 import com.fiap.soat.model.dto.order.OrderDTO;
 import com.fiap.soat.model.dto.queue.QueueDTO;
 import com.fiap.soat.repository.QueueRepository;
@@ -17,7 +19,19 @@ public class QueueService {
   public Mono<QueueDTO> create(OrderDTO order) {
     return Mono.just(order)
         .map(this.queueMapper::create)
+        .map(this::addHistory)
         .flatMap(this.queueRepository::save)
         .map(this.queueMapper::toDTO);
+  }
+
+  private QueueDocument addHistory(QueueDocument document) {
+    document
+        .getHistory()
+        .add(
+            QueueHistoryDocument.builder()
+                .status(document.getStatus())
+                .timestamp(document.getTimestampCurrentStatus())
+                .build());
+    return document;
   }
 }

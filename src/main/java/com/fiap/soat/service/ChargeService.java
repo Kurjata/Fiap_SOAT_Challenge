@@ -23,6 +23,7 @@ public class ChargeService {
         .flatMap(this.orderService::getById)
         .filter(order -> CREATED.equals(order.getStatus()))
         .filter(Predicate.not(order -> order.getProducts().isEmpty()))
+            //TODO: criar exceção
         .map(
             order -> {
               order.setStatus(WAITING_FOR_PAYMENT);
@@ -43,6 +44,11 @@ public class ChargeService {
             })
         .flatMap(this.orderService::save)
         .flatMap(this.queueService::create)
-        .thenReturn(dto);
+        .map(
+            queue -> {
+              dto.setQueueId(queue.getId());
+
+              return dto;
+            });
   }
 }
