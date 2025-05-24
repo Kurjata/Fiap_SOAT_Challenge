@@ -1,0 +1,23 @@
+package com.fiap.soat.service;
+
+import com.fiap.soat.mapper.QueueMapper;
+import com.fiap.soat.model.dto.order.OrderDTO;
+import com.fiap.soat.model.dto.queue.QueueDTO;
+import com.fiap.soat.repository.QueueRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
+
+@Service
+@AllArgsConstructor
+public class QueueService {
+  private QueueRepository queueRepository;
+  private QueueMapper queueMapper;
+
+  public Mono<QueueDTO> create(OrderDTO order) {
+    return Mono.just(order)
+        .map(this.queueMapper::create)
+        .flatMap(this.queueRepository::save)
+        .map(this.queueMapper::toDTO);
+  }
+}

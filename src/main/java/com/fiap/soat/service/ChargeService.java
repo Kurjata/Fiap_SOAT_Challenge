@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 public class ChargeService {
 
   private OrderService orderService;
+  private QueueService queueService;
 
   public Mono<ChargeDTO> create(ChargeDTO dto) {
     return Mono.just(dto.getOrderId())
@@ -41,7 +42,7 @@ public class ChargeService {
               return order;
             })
         .flatMap(this.orderService::save)
-            //.flatMap() TODO: Criar inserção na fila no banco de dados
+        .flatMap(this.queueService::create)
         .thenReturn(dto);
   }
 }
