@@ -74,9 +74,14 @@ public class QueueService {
 
   private Mono<QueueDocument> envolveStatus(QueueDocument document) {
     return switch (document.getStatus()) {
-      case RECEIVED -> Mono.just(document).map(d -> setStatus(d, IN_PREPARATION));
-      case IN_PREPARATION ->
-          Mono.just(document).map(d -> setStatus(d, READY));
+      case RECEIVED ->
+          this.queueRepository
+              .getFirstReceived()
+              .filter(received -> received.getId().equals(document.getId()))
+              .map(d -> setStatus(d, IN_PREPARATION))
+              .switchIfEmpty(
+                  Mono.error(new BusinessException(ServiceError.QUEUE_NOT_FIRST_PROCESS)));
+      case IN_PREPARATION -> Mono.just(document).map(d -> setStatus(d, READY));
       case READY -> Mono.just(document).map(d -> setStatus(d, FINISHED));
       case FINISHED ->
           Mono.error(new BusinessException(ServiceError.QUEUE_ENVOLVE_STATUS_FINISHED));

@@ -113,7 +113,4 @@ public class QueueController {
     return Mono.just(id).flatMap(this.queueService::nextStatus).map(this.queueMapper::toResponse);
   }
   // TODO: get by id
-  // TODO: buscar o próximo da fila para o status
-  // TODO: evoluir status pelo id
-  // TODO:
 }
