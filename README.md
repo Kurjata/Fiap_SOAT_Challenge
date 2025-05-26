@@ -43,7 +43,7 @@ Este projeto explora conceitos e boas práticas de desenvolvimento reativo, apro
    ```
 4. **Utilize o Swagger via browser para navegar entre as API's disponíveis**:
    ```
-   http://localhost:8080
+   http://localhost:8080/webjars/swagger-ui/index.html
    ```
 
  #### Verifique se a porta 8080 está livre, caso contrário, a altere no arquivo `docker-compose.yml`.
