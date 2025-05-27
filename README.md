@@ -14,6 +14,10 @@ Bem-vindo(a) ao projeto **SOAT**! Este repositório faz parte da **Pós-Graduaç
 
 Este projeto explora conceitos e boas práticas de desenvolvimento reativo, aproveitando o ecossistema do Spring WebFlux e a praticidade de um banco de dados não relacional como o MongoDB. Também inclui a possibilidade de containerização e orquestração de serviços por meio do Docker, tornando a aplicação escalável e fácil de gerenciar.
 
+## Event Storming (Domain-Driven Design)
+
+Diagrama para fluxo do desenvolvimento da aplicação. Link: https://miro.com/app/board/uXjVI6zdSIY=/.
+
 ## Como Este Projeto se Destaca
 
 1. **Arquitetura Reativa**: Utiliza Spring WebFlux, implementando programação reativa para garantir alto throughput, consumo eficiente de recursos e escalabilidade simplificada com operações não-bloqueantes.
@@ -42,8 +46,10 @@ Este projeto explora conceitos e boas práticas de desenvolvimento reativo, apro
    docker compose up --build
    ```
 4. **Utilize o Swagger via browser para navegar entre as API's disponíveis**:
-   ```
+   ```bash
    http://localhost:8080/webjars/swagger-ui/index.html
    ```
+
+   
 
  #### Verifique se a porta 8080 está livre, caso contrário, a altere no arquivo `docker-compose.yml`.
