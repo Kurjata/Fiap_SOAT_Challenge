@@ -1,7 +1,9 @@
 services:
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: .docker/prod/Dockerfile
     ports:
       - "8080:8080"  # Porta da aplicação
       - "5005:5005"  # Porta de debug
@@ -18,5 +20,5 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}
