@@ -18,5 +18,8 @@ public class Example {
   public static final String PRODUCT_NAME_EXAMPLE = "Burger";
   public static final String PRODUCT_DESCRIPTION_EXAMPLE = "Burger that has beef, onion, tomato and lettuce";
 
+  //QUEUE
+  public static final String QUEUE_NICKNAME_EXAMPLE = "1748048137";
+
 
 }

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static com.fiap.soat.model.enums.OrderStatus.CREATED;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -20,7 +22,8 @@ public class OrderDTO {
   private String id;
   private LocalDateTime timestampCreatedDate;
   private OrderCustomerDTO customer;
-  private OrderStatus status;
+
+  @Builder.Default private OrderStatus status = CREATED;
 
   @Builder.Default private List<OrderProductDTO> products = new ArrayList<>();
 
