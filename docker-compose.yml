@@ -6,14 +6,12 @@ services:
       dockerfile: .docker/prod/Dockerfile
     ports:
       - "8080:8080"  # Porta da aplicação
-      - "5005:5005"  # Porta de debug
-    volumes:
-      - ./src:/app/src  # Hot-reload do código fonte
-      - ~/.m2:/root/.m2  # Cache do Maven
-      - ./entrypoint.sh:/app/entrypoint.sh
     environment:
-      - SPRING_PROFILES_ACTIVE=local
-    entrypoint: ./entrypoint.sh
+      - SPRING_PROFILES_ACTIVE=${PROFILE_ACTIVE}
+      - MONGO_HOST=${MONGO_HOST}
+      - MONGO_DB=${MONGO_DB}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
 
   database:
     image: mongo:8.0

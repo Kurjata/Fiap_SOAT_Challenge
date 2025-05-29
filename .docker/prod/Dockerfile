@@ -1,22 +1,18 @@
-FROM maven:3.9.9-eclipse-temurin-21-alpine
+FROM maven:3.9.9-eclipse-temurin-21-alpine as builder
+
+WORKDIR /build
+
+COPY ../../pom.xml .
+COPY ../../src ./src
+
+RUN mvn clean package -DskipTests --batch-mode
+
+FROM openjdk:21-jdk
 
 WORKDIR /app
 
-# Instalar ferramentas básicas de desenvolvimento
-RUN apk add --no-cache curl jq bash
+COPY --from=builder /build/target/*.jar /app.jar
 
-# Copiar apenas o pom.xml primeiro para aproveitar o cache das dependências
-COPY ../../pom.xml .
-RUN mvn dependency:go-offline
-
-# Copiar o código fonte
-COPY ../../src ./src
-
-# Expor a porta padrão do Spring Boot
 EXPOSE 8080
 
-# Configurar volume para hot-reload
-VOLUME /app/src
-
-# Comando para executar a aplicação em modo de desenvolvimento
-CMD ["mvn", "spring-boot:run", "-Dspring-boot.run.jvmArguments='-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005'"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
