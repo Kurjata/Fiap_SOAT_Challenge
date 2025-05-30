@@ -3,7 +3,7 @@ spring:
     mongodb:
       host: ${MONGO_HOST}
       port: 27017
-      database: fiap
-      username: ${MONGO_USERNAME}
-      password: ${MONGO_PASSWORD}
+      database: ${MONGO_DB}
+      username: ${MONGO_USER}
+      password: ${MONGO_PASS}
       authentication-database: admin

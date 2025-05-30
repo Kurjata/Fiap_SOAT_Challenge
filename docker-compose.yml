@@ -1,0 +1,22 @@
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: .docker/prod/Dockerfile
+    ports:
+      - "8080:8080"  # Porta da aplicação
+    environment:
+      - SPRING_PROFILES_ACTIVE=${PROFILE_ACTIVE}
+      - MONGO_HOST=${MONGO_HOST}
+      - MONGO_DB=${MONGO_DB}
+      - MONGO_USER=${MONGO_USER}
+      - MONGO_PASS=${MONGO_PASS}
+
+  database:
+    image: mongo:8.0
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS}

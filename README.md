@@ -41,11 +41,20 @@ Diagrama para fluxo do desenvolvimento da aplicação. Link: https://miro.com/ap
     ```bash
     cd Fiap_SOAT_Challenge
     ```
-3. **Execute o Projeto usando o comando docker**:
+   
+3. **Configurar as variáveis de ambiente:**
+    ```bash
+   # Cria uma cópia do arquivo
+   cp .env.exemple .env
+   
+   # Abra o arquivo .env e inclua os valores correspondentes.
+   ```
+
+4. **Execute o Projeto usando o comando docker**:
    ```bash
    docker compose up --build
    ```
-4. **Utilize o Swagger via browser para navegar entre as API's disponíveis**:
+5. **Utilize o Swagger via browser para navegar entre as API's disponíveis**:
    ```bash
    http://localhost:8080/webjars/swagger-ui/index.html
    ```
