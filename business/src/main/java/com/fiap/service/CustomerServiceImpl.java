@@ -4,18 +4,22 @@ import static enums.ServiceError.CUSTOMER_CREATE_EXISTS_DOCUMENT_NUMBER;
 import static enums.ServiceError.CUSTOMER_NOT_EXISTS;
 import static java.lang.Boolean.FALSE;
 
+
 import dto.customer.Customer;
 import exception.BusinessException;
 import exception.NotFoundException;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import repository.CustomerRepository;
+import service.CustomerService;
 
 @Service
-@AllArgsConstructor
-public class CustomerService {
-  private CustomerRepository customerRepository;
+public class CustomerServiceImpl implements CustomerService {
+  private final CustomerRepository customerRepository;
+
+  public CustomerServiceImpl(CustomerRepository customerRepository) {
+    this.customerRepository = customerRepository;
+  }
 
   public Mono<Customer> create(Customer customer) {
     return customerRepository
