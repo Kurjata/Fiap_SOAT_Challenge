@@ -5,7 +5,7 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 import com.fiap.inbound.model.response.queue.QueuePageResponse;
 import com.fiap.inbound.model.response.queue.QueueResponse;
 import com.fiap.outbound.model.queue.QueueDocument;
-import dto.order.OrderDTO;
+import dto.order.Order;
 import dto.queue.QueueDTO;
 import dto.queue.QueueFilterDTO;
 import java.util.List;
@@ -28,7 +28,7 @@ public interface QueueMapper extends EntityMapper {
   @Mapping(target = "status", ignore = true)
   @Mapping(target = "orderId", source = "id")
   @Mapping(target = "items", source = "products")
-  QueueDocument create(OrderDTO dto);
+  QueueDocument create(Order dto);
 
   @Mapping(
       target = "startDate",

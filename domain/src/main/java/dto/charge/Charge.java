@@ -1,4 +1,4 @@
-package dto.order;
+package dto.charge;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderAddProductDTO {
-
-  private String orderId;
-
-  private String productId;
-
-  private Integer quantity;
+public class Charge {
+    private String orderId;
+    private String queueId;
 }

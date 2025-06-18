@@ -5,7 +5,7 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 import com.fiap.inbound.model.request.customer.CustomerCreateRequest;
 import com.fiap.inbound.model.response.customer.CustomerResponse;
 import com.fiap.outbound.model.customer.CustomerDocument;
-import dto.customer.CustomerDTO;
+import dto.customer.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -15,16 +15,16 @@ import util.CustomerUtil;
 public interface CustomerMapper extends EntityMapper {
 
   @Mapping(target = "id", qualifiedByName = "toId")
-  CustomerDTO toDTO(CustomerDocument document);
+  Customer toCustomer(CustomerDocument document);
 
   @Mapping(target = "id", qualifiedByName = "toObjectId")
   @Mapping(target = "timestampCreatedDate", ignore = true)
-  CustomerDocument toDocument(CustomerDTO dto);
+  CustomerDocument toDocument(Customer dto);
 
   @Mapping(target = "documentNumber", qualifiedByName = "clearDocumentNumber")
-  CustomerDTO toDTO(CustomerCreateRequest request);
+  Customer toCustomer(CustomerCreateRequest request);
 
-  CustomerResponse toResponse(CustomerDTO dto);
+  CustomerResponse toResponse(Customer dto);
 
   @Named("clearDocumentNumber")
   default String clearDocumentNumber(String documentNumber) {

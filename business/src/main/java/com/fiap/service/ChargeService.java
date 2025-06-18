@@ -1,7 +1,7 @@
 package com.fiap.service;
 
 
-import dto.charge.ChargeDTO;
+import dto.charge.Charge;
 import exception.BusinessException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class ChargeService {
   private OrderService orderService;
   private QueueService queueService;
 
-  public Mono<ChargeDTO> create(ChargeDTO dto) {
+  public Mono<Charge> create(Charge dto) {
     return Mono.just(dto.getOrderId())
         .flatMap(this.orderService::getById)
         .filter(order -> CREATED.equals(order.getStatus()))
@@ -37,7 +37,7 @@ public class ChargeService {
         .thenReturn(dto);
   }
 
-  public Mono<ChargeDTO> payment(ChargeDTO dto) {
+  public Mono<Charge> payment(Charge dto) {
     return Mono.just(dto.getOrderId())
         .flatMap(this.orderService::getById)
         .filter(order -> WAITING_FOR_PAYMENT.equals(order.getStatus()))

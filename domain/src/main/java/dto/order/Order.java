@@ -18,10 +18,10 @@ import static com.fiap.soat.model.enums.OrderStatus.CREATED;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDTO {
+public class Order {
   private String id;
   private LocalDateTime timestampCreatedDate;
-  private OrderCustomerDTO customer;
+  private OrderCustomer customer;
 
   @Builder.Default private OrderStatus status = CREATED;
 

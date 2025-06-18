@@ -6,6 +6,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
 import com.fiap.inbound.constants.ExceptionSwagger;
+import com.fiap.inbound.mapper.CustomerMapper;
 import com.fiap.inbound.model.request.customer.CustomerCreateRequest;
 import com.fiap.inbound.model.response.customer.CustomerResponse;
 import com.fiap.service.CustomerService;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+import util.CustomerUtil;
 
 @RestController
 @RequestMapping("/api/v1/customer")
@@ -53,7 +55,7 @@ public class CustomerController {
   public Mono<CustomerResponse> create(@RequestBody @Valid final CustomerCreateRequest request) {
 
     return Mono.just(request)
-        .map(customerMapper::toDTO)
+        .map(customerMapper::toCustomer)
         .flatMap(customerService::create)
         .map(customerMapper::toResponse);
   }

@@ -11,7 +11,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface ProductRepository extends ReactiveMongoRepository<ProductDocument, ObjectId> {
+public interface MongoProductRepository extends ReactiveMongoRepository<ProductDocument, ObjectId> {
     Mono<Long> countByCategory(ProductCategory category);
     Flux<ProductDocument> findByCategoryOrderByNameDesc(ProductCategory category, Pageable pageable);
 }

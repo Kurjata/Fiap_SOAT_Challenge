@@ -1,4 +1,4 @@
-package dto.charge;
+package dto.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChargeDTO {
-    private String orderId;
-    private String queueId;
+public class OrderCustomer {
+  private String documentNumber;
+  private String name;
+  private String email;
 }

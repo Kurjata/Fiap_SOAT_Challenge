@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 import util.SpringContext;
 
 @Repository
-public interface QueueRepository extends ReactiveMongoRepository<QueueDocument, ObjectId> {
+public interface MongoQueueRepository extends ReactiveMongoRepository<QueueDocument, ObjectId> {
   default Flux<QueueDocument> getByFilter(QueueFilterDTO filter) {
     return filter.getContext().find(filter.getQuery("timestampCurrentStatus", Sort.Direction.ASC), QueueDocument.class);
   }

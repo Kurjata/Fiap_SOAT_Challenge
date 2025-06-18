@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface OrderRepository extends ReactiveMongoRepository<OrderDocument, ObjectId> {
+public interface MongoOrderRepository extends ReactiveMongoRepository<OrderDocument, ObjectId> {
     default Flux<OrderDocument> getByFilter(OrderFilterDTO filter) {
         return filter.getContext().find(filter.getQuery(), OrderDocument.class);
     }
