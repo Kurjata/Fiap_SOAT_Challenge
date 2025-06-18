@@ -2,20 +2,17 @@ package com.fiap.inbound.mapper;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-import com.fiap.soat.model.document.queue.QueueDocument;
-import com.fiap.soat.model.dto.order.OrderDTO;
-import com.fiap.soat.model.dto.queue.QueueDTO;
-import com.fiap.soat.model.dto.queue.QueueFilterDTO;
-import com.fiap.soat.model.response.order.OrderPageResponse;
-import com.fiap.soat.model.response.order.OrderResponse;
-import com.fiap.soat.model.response.queue.QueuePageResponse;
-import com.fiap.soat.model.response.queue.QueueResponse;
+import com.fiap.inbound.model.response.queue.QueuePageResponse;
+import com.fiap.inbound.model.response.queue.QueueResponse;
+import com.fiap.outbound.model.queue.QueueDocument;
+import dto.order.OrderDTO;
+import dto.queue.QueueDTO;
+import dto.queue.QueueFilterDTO;
+import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.springframework.data.domain.PageImpl;
-
-import java.util.List;
 
 @Mapper(componentModel = SPRING)
 public interface QueueMapper extends EntityMapper {

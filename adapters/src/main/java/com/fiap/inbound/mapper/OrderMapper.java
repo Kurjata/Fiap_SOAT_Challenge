@@ -2,26 +2,23 @@ package com.fiap.inbound.mapper;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-import com.fiap.soat.model.document.order.OrderDocument;
-import com.fiap.soat.model.dto.order.OrderAddProductDTO;
-import com.fiap.soat.model.dto.order.OrderCustomerDTO;
-import com.fiap.soat.model.dto.order.OrderDTO;
-import com.fiap.soat.model.dto.order.OrderFilterDTO;
-import com.fiap.soat.model.dto.order.OrderProductDTO;
-import com.fiap.soat.model.dto.product.ProductDTO;
-import com.fiap.soat.model.request.order.OrderAddProductRequest;
-import com.fiap.soat.model.request.order.OrderCreateRequest;
-import com.fiap.soat.model.response.order.OrderPageResponse;
-import com.fiap.soat.model.response.order.OrderResponse;
-import com.fiap.soat.model.response.product.ProductPageResponse;
-import com.fiap.soat.model.response.product.ProductResponse;
+import com.fiap.inbound.model.request.order.OrderAddProductRequest;
+import com.fiap.inbound.model.request.order.OrderCreateRequest;
+import com.fiap.inbound.model.response.order.OrderPageResponse;
+import com.fiap.inbound.model.response.order.OrderResponse;
+import com.fiap.outbound.model.order.OrderDocument;
+import dto.order.OrderAddProductDTO;
+import dto.order.OrderCustomerDTO;
+import dto.order.OrderDTO;
+import dto.order.OrderFilterDTO;
+import dto.order.OrderProductDTO;
+import dto.product.ProductDTO;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.springframework.data.domain.PageImpl;
-
-import java.util.List;
 
 @Mapper(componentModel = SPRING)
 public interface OrderMapper extends EntityMapper {

@@ -2,12 +2,14 @@ package com.fiap.inbound.mapper;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-import com.fiap.soat.model.document.product.ProductDocument;
-import com.fiap.soat.model.dto.product.ProductDTO;
-import com.fiap.soat.model.request.product.ProductRequest;
-import com.fiap.soat.model.response.product.ProductPageResponse;
-import com.fiap.soat.model.response.product.ProductResponse;
+
 import java.util.List;
+
+import com.fiap.inbound.model.request.product.ProductRequest;
+import com.fiap.inbound.model.response.product.ProductPageResponse;
+import com.fiap.inbound.model.response.product.ProductResponse;
+import com.fiap.outbound.model.product.ProductDocument;
+import dto.product.ProductDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

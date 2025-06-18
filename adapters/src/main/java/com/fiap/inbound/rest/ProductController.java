@@ -16,10 +16,12 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
 import com.fiap.inbound.constants.ExceptionSwagger;
+import com.fiap.inbound.mapper.ProductMapper;
 import com.fiap.inbound.model.request.product.ProductRequest;
 import com.fiap.inbound.model.response.product.ProductPageResponse;
 import com.fiap.inbound.model.response.product.ProductResponse;
 import com.fiap.inbound.rest.validation.ValueOfEnum;
+import com.fiap.service.ProductService;
 import enums.ProductCategory;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

@@ -1,18 +1,18 @@
 package com.fiap.service;
 
-import static com.fiap.soat.model.enums.OrderStatus.CREATED;
-import static com.fiap.soat.model.enums.OrderStatus.PAID;
-import static com.fiap.soat.model.enums.OrderStatus.WAITING_FOR_PAYMENT;
-import static com.fiap.soat.model.enums.ServiceError.CHARGE_ORDER_PRODUCTS_EMPTY;
-import static com.fiap.soat.model.enums.ServiceError.CHARGE_ORDER_STATUS_NOT_CREATED;
 
-import com.fiap.soat.exception.BusinessException;
-import com.fiap.soat.model.dto.charge.ChargeDTO;
+import dto.charge.ChargeDTO;
+import exception.BusinessException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.util.function.Predicate;
+
+import static enums.OrderStatus.CREATED;
+import static enums.OrderStatus.WAITING_FOR_PAYMENT;
+import static enums.ServiceError.CHARGE_ORDER_PRODUCTS_EMPTY;
+import static enums.ServiceError.CHARGE_ORDER_STATUS_NOT_CREATED;
 
 @Service
 @AllArgsConstructor
