@@ -11,6 +11,7 @@
 	<groupId>com.fiap</groupId>
 	<artifactId>soat</artifactId>
 	<version>1.0.0</version>
+	<packaging>pom</packaging>
 	<name>soat</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -20,6 +21,13 @@
 	<developers>
 		<developer/>
 	</developers>
+	<modules>
+		<module>application</module>
+		<module>adapters</module>
+		<module>business</module>
+		<module>infrastructure</module>
+		<module>domain</module>
+	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>
