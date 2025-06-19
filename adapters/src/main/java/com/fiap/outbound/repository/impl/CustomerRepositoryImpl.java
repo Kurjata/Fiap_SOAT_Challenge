@@ -1,6 +1,7 @@
-package com.fiap.outbound.repository;
+package com.fiap.outbound.repository.impl;
 
 import com.fiap.inbound.mapper.CustomerMapper;
+import com.fiap.outbound.repository.MongoCustomerRepository;
 import dto.customer.Customer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

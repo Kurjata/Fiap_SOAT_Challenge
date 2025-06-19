@@ -22,9 +22,9 @@
 		<developer/>
 	</developers>
 	<modules>
-		<module>application</module>
+		<module>start</module>
 		<module>adapters</module>
-		<module>business</module>
+		<module>application</module>
 		<module>infrastructure</module>
 		<module>domain</module>
 	</modules>
