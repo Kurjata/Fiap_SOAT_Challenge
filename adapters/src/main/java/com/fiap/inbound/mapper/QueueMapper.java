@@ -2,8 +2,8 @@ package com.fiap.inbound.mapper;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-import com.fiap.inbound.model.response.queue.QueuePageResponse;
-import com.fiap.inbound.model.response.queue.QueueResponse;
+import response.queue.QueuePageResponse;
+import response.queue.QueueResponse;
 import com.fiap.outbound.model.queue.QueueDocument;
 import dto.order.Order;
 import dto.queue.QueueDTO;

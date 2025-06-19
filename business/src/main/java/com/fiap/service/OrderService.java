@@ -32,7 +32,7 @@ public class OrderService {
   private OrderRepository orderRepository;
   private OrderMapper orderMapper;
 
-  private ProductService productService;
+  private ProductServiceImpl productService;
 
   public Mono<OrderDTO> save(OrderDTO dto) {
     return Mono.just(dto)

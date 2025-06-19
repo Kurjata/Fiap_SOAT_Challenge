@@ -1,8 +1,8 @@
 package com.fiap.configuration;
 
 
-import com.fiap.inbound.model.response.exception.ErrorFieldResponse;
-import com.fiap.inbound.model.response.exception.ExceptionResponse;
+import response.exception.ErrorFieldResponse;
+import response.exception.ExceptionResponse;
 import exception.ChallengeException;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.validation.ConstraintViolationException;

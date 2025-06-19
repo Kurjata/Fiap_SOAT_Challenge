@@ -2,17 +2,17 @@ package com.fiap.inbound.mapper;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-import com.fiap.inbound.model.request.order.OrderAddProductRequest;
-import com.fiap.inbound.model.request.order.OrderCreateRequest;
-import com.fiap.inbound.model.response.order.OrderPageResponse;
-import com.fiap.inbound.model.response.order.OrderResponse;
+import request.order.OrderAddProductRequest;
+import request.order.OrderCreateRequest;
+import response.order.OrderPageResponse;
+import response.order.OrderResponse;
 import com.fiap.outbound.model.order.OrderDocument;
 import dto.order.OrderAddProduct;
 import dto.order.OrderCustomer;
 import dto.order.Order;
 import dto.order.OrderFilterDTO;
 import dto.order.OrderProductDTO;
-import dto.product.ProductDTO;
+import dto.product.Product;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Mapper;
@@ -39,7 +39,7 @@ public interface OrderMapper extends EntityMapper {
 
   OrderAddProduct toDTO(OrderAddProductRequest dto);
 
-  OrderProductDTO toOrderProductDTO(ProductDTO dto);
+  OrderProductDTO toOrderProductDTO(Product dto);
 
   @Mapping(
       target = "startDate",

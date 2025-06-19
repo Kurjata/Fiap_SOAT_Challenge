@@ -6,8 +6,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.fiap.inbound.constants.ExceptionSwagger;
 import com.fiap.inbound.mapper.CustomerMapper;
-import com.fiap.inbound.model.request.customer.CustomerCreateRequest;
-import com.fiap.inbound.model.response.customer.CustomerResponse;
+import request.customer.CustomerCreateRequest;
+import response.customer.CustomerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

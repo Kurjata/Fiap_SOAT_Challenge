@@ -5,11 +5,11 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 import java.util.List;
 
-import com.fiap.inbound.model.request.product.ProductRequest;
-import com.fiap.inbound.model.response.product.ProductPageResponse;
-import com.fiap.inbound.model.response.product.ProductResponse;
+import request.product.ProductRequest;
+import response.product.ProductPageResponse;
+import response.product.ProductResponse;
 import com.fiap.outbound.model.product.ProductDocument;
-import dto.product.ProductDTO;
+import dto.product.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -19,27 +19,27 @@ import org.springframework.data.domain.PageImpl;
 public interface ProductMapper extends EntityMapper {
 
   @Mapping(target = "id", qualifiedByName = "toId")
-  ProductDTO toDTO(ProductDocument document);
+  Product toProduct(ProductDocument document);
 
   @Mapping(target = "id", qualifiedByName = "toObjectId")
   @Mapping(target = "timestampCreatedDate", ignore = true)
-  ProductDocument toDocument(ProductDTO dto);
+  ProductDocument toDocument(Product dto);
 
-  ProductDTO toDTO(ProductRequest request);
+  Product toProduct(ProductRequest request);
 
   @Mapping(target = "id", source = "id")
-  ProductDTO toDTO(ProductRequest request, String id);
+  Product toProduct(ProductRequest request, String id);
 
-  ProductResponse toResponse(ProductDTO dto);
+  ProductResponse toResponse(Product dto);
 
   @Mapping(target = "page", source = "number")
   @Mapping(target = "hasNext", expression = "java(page.hasNext())")
   @Mapping(target = "last", expression = "java(page.isLast())")
   @Mapping(target = "items", source = "content", qualifiedByName = "toContent")
-  ProductPageResponse toPageResponse(PageImpl<ProductDTO> page);
+  ProductPageResponse toPageResponse(PageImpl<Product> page);
 
   @Named("toContent")
-  default List<ProductResponse> toContent(List<ProductDTO> list) {
+  default List<ProductResponse> toContent(List<Product> list) {
     return list.stream().map(this::toResponse).toList();
   }
 }

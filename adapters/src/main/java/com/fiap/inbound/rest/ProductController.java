@@ -17,9 +17,9 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.fiap.inbound.constants.ExceptionSwagger;
 import com.fiap.inbound.mapper.ProductMapper;
-import com.fiap.inbound.model.request.product.ProductRequest;
-import com.fiap.inbound.model.response.product.ProductPageResponse;
-import com.fiap.inbound.model.response.product.ProductResponse;
+import request.product.ProductRequest;
+import response.product.ProductPageResponse;
+import response.product.ProductResponse;
 import com.fiap.inbound.rest.validation.ValueOfEnum;
 import com.fiap.service.ProductService;
 import enums.ProductCategory;
@@ -71,7 +71,7 @@ public class ProductController {
                       schema = @Schema(implementation = ProductResponse.class))))
   public Mono<ProductResponse> create(@RequestBody @Valid final ProductRequest request) {
     return Mono.just(request)
-        .map(productMapper::toDTO)
+        .map(productMapper::toProduct)
         .flatMap(productService::create)
         .map(productMapper::toResponse);
   }
@@ -93,7 +93,7 @@ public class ProductController {
       @PathVariable @Parameter(description = PRODUCT_ID_DESCRIPTION, example = ID_EXAMPLE) final String id,
       @RequestBody @Valid final ProductRequest request) {
     return Mono.just(request)
-        .map(r -> productMapper.toDTO(r, id))
+        .map(r -> productMapper.toProduct(r, id))
         .flatMap(productService::update)
         .map(productMapper::toResponse);
   }

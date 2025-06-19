@@ -18,8 +18,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.fiap.inbound.constants.ExceptionSwagger;
 import com.fiap.inbound.mapper.QueueMapper;
-import com.fiap.inbound.model.response.queue.QueuePageResponse;
-import com.fiap.inbound.model.response.queue.QueueResponse;
+import response.queue.QueuePageResponse;
+import response.queue.QueueResponse;
 import com.fiap.inbound.rest.validation.DateTimeFormat;
 import com.fiap.inbound.rest.validation.ValueOfEnum;
 import com.fiap.service.QueueService;

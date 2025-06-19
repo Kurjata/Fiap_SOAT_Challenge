@@ -24,10 +24,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import com.fiap.inbound.constants.ExceptionSwagger;
 import com.fiap.inbound.mapper.OrderMapper;
-import com.fiap.inbound.model.request.order.OrderAddProductRequest;
-import com.fiap.inbound.model.request.order.OrderCreateRequest;
-import com.fiap.inbound.model.response.order.OrderPageResponse;
-import com.fiap.inbound.model.response.order.OrderResponse;
+import request.order.OrderAddProductRequest;
+import request.order.OrderCreateRequest;
+import response.order.OrderPageResponse;
+import response.order.OrderResponse;
 import com.fiap.inbound.rest.validation.DateTimeFormat;
 import com.fiap.inbound.rest.validation.ValueOfEnum;
 import enums.OrderStatus;

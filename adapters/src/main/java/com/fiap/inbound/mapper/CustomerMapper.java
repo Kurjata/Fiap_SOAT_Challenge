@@ -2,8 +2,8 @@ package com.fiap.inbound.mapper;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-import com.fiap.inbound.model.request.customer.CustomerCreateRequest;
-import com.fiap.inbound.model.response.customer.CustomerResponse;
+import request.customer.CustomerCreateRequest;
+import response.customer.CustomerResponse;
 import com.fiap.outbound.model.customer.CustomerDocument;
 import dto.customer.Customer;
 import org.mapstruct.Mapper;
