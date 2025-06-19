@@ -11,6 +11,8 @@ public interface ProductService {
 
   Mono<Product> getById(String id);
 
+  Mono<Product> update(Product product);
+
   Mono<Void> delete(String id);
 
   Mono<PageImpl<Product>> getByCategory(ProductCategory category, Pageable pageable);

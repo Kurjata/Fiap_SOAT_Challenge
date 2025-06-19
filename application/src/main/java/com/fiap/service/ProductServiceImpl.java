@@ -35,6 +35,10 @@ public class ProductServiceImpl implements ProductService {
         .switchIfEmpty(Mono.error(new NotFoundException(PRODUCT_NOT_EXISTS)));
   }
 
+  public Mono<Product> update(Product product) {
+    return getById(product.getId()).flatMap(p -> repository.save(product));
+  }
+
   public Mono<PageImpl<Product>> getByCategory(ProductCategory category, Pageable pageable) {
     return repository
         .countByCategory(category)
