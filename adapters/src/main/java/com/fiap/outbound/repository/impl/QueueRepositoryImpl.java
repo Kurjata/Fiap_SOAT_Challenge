@@ -2,14 +2,14 @@ package com.fiap.outbound.repository.impl;
 
 import com.fiap.inbound.mapper.QueueMapper;
 import com.fiap.outbound.repository.MongoQueueRepository;
-import dto.order.Order;
-import dto.queue.Queue;
-import dto.queue.QueueFilter;
+import com.fiap.dto.order.Order;
+import com.fiap.dto.queue.Queue;
+import com.fiap.dto.queue.QueueFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import repository.QueueRepository;
+import com.fiap.repository.QueueRepository;
 
 @Component
 @RequiredArgsConstructor
@@ -22,7 +22,7 @@ public class QueueRepositoryImpl extends BaseRepositoryImpl implements QueueRepo
   }
 
   public Mono<Queue> findById(String id) {
-    return null;
+    return this.validateAndCreateMongoId(id).flatMap(repository::findById).map(mapper::toQueue);
   }
 
   public Mono<Queue> create(Order order) {
@@ -30,14 +30,14 @@ public class QueueRepositoryImpl extends BaseRepositoryImpl implements QueueRepo
   }
 
   public Mono<Queue> getFirstReceived() {
-    return null;
+    return repository.getFirstReceived().map(mapper::toQueue);
   }
 
   public Flux<Queue> getByFilter(QueueFilter filter) {
-    return null;
+    return repository.getByFilter(filter).map(mapper::toQueue);
   }
 
   public Mono<Long> getCountByFilter(QueueFilter filter) {
-    return null;
+    return repository.getCountByFilter(filter);
   }
 }

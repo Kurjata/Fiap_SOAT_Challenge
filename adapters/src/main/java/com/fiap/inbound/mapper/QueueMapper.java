@@ -2,12 +2,12 @@ package com.fiap.inbound.mapper;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-import response.queue.QueuePageResponse;
-import response.queue.QueueResponse;
-import document.queue.QueueDocument;
-import dto.order.Order;
-import dto.queue.Queue;
-import dto.queue.QueueFilter;
+import com.fiap.response.queue.QueuePageResponse;
+import com.fiap.response.queue.QueueResponse;
+import com.fiap.document.queue.QueueDocument;
+import com.fiap.dto.order.Order;
+import com.fiap.dto.queue.Queue;
+import com.fiap.dto.queue.QueueFilter;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -32,10 +32,10 @@ public interface QueueMapper extends EntityMapper {
 
   @Mapping(
       target = "startDate",
-      expression = "java(com.fiap.soat.util.DateUtil.toDateTime(startDate))")
+      expression = "java(com.fiap.DateUtil.toDateTime(startDate))")
   @Mapping(
       target = "finalDate",
-      expression = "java(com.fiap.soat.util.DateUtil.toDateTime(finalDate))")
+      expression = "java(com.fiap.DateUtil.toDateTime(finalDate))")
   QueueFilter toFilter(
       Integer page, Integer size, String startDate, String finalDate, String status);
 

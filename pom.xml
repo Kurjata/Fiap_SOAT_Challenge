@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from com.fiap.repository -->
 	</parent>
 	<groupId>com.fiap</groupId>
 	<artifactId>soat</artifactId>
@@ -50,6 +50,7 @@
 			src/main/java/com/fiap/soat/*,
 			scr/main/java/com/fiap/soat/mapper/*
 		</sonar.coverage.exclusions>
+		<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 	</properties>
 	<dependencies>
 		<dependency>

@@ -2,15 +2,15 @@ package com.fiap.outbound.repository.impl;
 
 import com.fiap.inbound.mapper.OrderMapper;
 import com.fiap.outbound.repository.MongoOrderRepository;
-import dto.order.Order;
-import dto.order.OrderFilter;
-import dto.order.OrderProduct;
-import dto.product.Product;
+import com.fiap.dto.order.Order;
+import com.fiap.dto.order.OrderFilter;
+import com.fiap.dto.order.OrderProduct;
+import com.fiap.dto.product.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import repository.OrderRepository;
+import com.fiap.repository.OrderRepository;
 
 @Component
 @RequiredArgsConstructor

@@ -2,14 +2,14 @@ package com.fiap.inbound.mapper;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-import request.customer.CustomerCreateRequest;
-import response.customer.CustomerResponse;
-import document.customer.CustomerDocument;
-import dto.customer.Customer;
+import com.fiap.request.customer.CustomerCreateRequest;
+import com.fiap.response.customer.CustomerResponse;
+import com.fiap.document.customer.CustomerDocument;
+import com.fiap.dto.customer.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import util.CustomerUtil;
+import com.fiap.CustomerUtil;
 
 @Mapper(componentModel = SPRING)
 public interface CustomerMapper extends EntityMapper {

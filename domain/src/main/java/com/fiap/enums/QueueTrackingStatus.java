@@ -1,0 +1,19 @@
+package com.fiap.enums;
+
+import java.util.Arrays;
+import lombok.Getter;
+
+@Getter
+public enum QueueTrackingStatus {
+  RECEIVED,
+  IN_PREPARATION,
+  READY,
+  FINISHED;
+
+  public static QueueTrackingStatus getByName(String name) {
+    return Arrays.stream(QueueTrackingStatus.values())
+        .filter(p -> p.name().equals(name))
+        .findFirst()
+        .orElse(null);
+  }
+}

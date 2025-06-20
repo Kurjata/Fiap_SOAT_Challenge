@@ -4,10 +4,10 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import com.fiap.inbound.constants.ExceptionSwagger;
+import com.fiap.constants.ExceptionSwagger;
 import com.fiap.inbound.mapper.CustomerMapper;
-import request.customer.CustomerCreateRequest;
-import response.customer.CustomerResponse;
+import com.fiap.request.customer.CustomerCreateRequest;
+import com.fiap.response.customer.CustomerResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import service.CustomerService;
-import util.CustomerUtil;
+import com.fiap.service.CustomerService;
+import com.fiap.CustomerUtil;
 
 @RestController
 @RequestMapping("/api/v1/customer")
@@ -64,7 +64,7 @@ public class CustomerController {
   @Operation(
       summary = "Customer get",
       description =
-          "This endpoint is used to search for a customer in the database by document number.",
+          "This endpoint is used to search for a customer in the database by com.fiap.document number.",
       responses =
           @ApiResponse(
               responseCode = "200",

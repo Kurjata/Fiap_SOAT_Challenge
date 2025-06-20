@@ -1,8 +1,8 @@
 package com.fiap.outbound.repository;
 
-import document.queue.QueueDocument;
-import dto.queue.QueueFilter;
-import enums.QueueTrackingStatus;
+import com.fiap.document.queue.QueueDocument;
+import com.fiap.dto.queue.QueueFilter;
+import com.fiap.enums.QueueTrackingStatus;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import util.SpringContext;
+import com.fiap.SpringContext;
 
 @Repository
 public interface MongoQueueRepository extends ReactiveMongoRepository<QueueDocument, ObjectId> {

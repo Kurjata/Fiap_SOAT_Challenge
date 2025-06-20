@@ -4,8 +4,9 @@ package com.fiap.inbound.rest;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import com.fiap.inbound.constants.ExceptionSwagger;
-import request.charge.ChargeCreateRequest;
+import com.fiap.inbound.mapper.ChargeMapper;
+import com.fiap.constants.ExceptionSwagger;
+import com.fiap.request.charge.ChargeCreateRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -19,12 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
+import com.fiap.service.ChargeService;
 
 @RestController
 @RequestMapping("/api/v1/charge")
 @Validated
-@RequiredArgsConstructor
 @ExceptionSwagger
+@RequiredArgsConstructor
 @Tag(name = "Charge Controller", description = "Charge operations")
 public class ChargeController {
   private final ChargeService chargeService;

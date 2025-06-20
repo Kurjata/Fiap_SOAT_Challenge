@@ -2,14 +2,14 @@ package com.fiap.outbound.repository.impl;
 
 import com.fiap.inbound.mapper.ProductMapper;
 import com.fiap.outbound.repository.MongoProductRepository;
-import dto.product.Product;
-import enums.ProductCategory;
+import com.fiap.dto.product.Product;
+import com.fiap.enums.ProductCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import repository.ProductRepository;
+import com.fiap.repository.ProductRepository;
 
 @Component
 @RequiredArgsConstructor

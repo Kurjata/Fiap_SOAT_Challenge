@@ -2,8 +2,8 @@ package com.fiap.inbound.mapper;
 
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
-import request.charge.ChargeCreateRequest;
-import dto.charge.Charge;
+import com.fiap.request.charge.ChargeCreateRequest;
+import com.fiap.dto.charge.Charge;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = SPRING)

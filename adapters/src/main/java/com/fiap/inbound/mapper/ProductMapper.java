@@ -5,11 +5,11 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 import java.util.List;
 
-import request.product.ProductRequest;
-import response.product.ProductPageResponse;
-import response.product.ProductResponse;
-import document.product.ProductDocument;
-import dto.product.Product;
+import com.fiap.request.product.ProductRequest;
+import com.fiap.response.product.ProductPageResponse;
+import com.fiap.response.product.ProductResponse;
+import com.fiap.document.product.ProductDocument;
+import com.fiap.dto.product.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

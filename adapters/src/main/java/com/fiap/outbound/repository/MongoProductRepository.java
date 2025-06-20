@@ -1,8 +1,8 @@
 package com.fiap.outbound.repository;
 
 
-import document.product.ProductDocument;
-import enums.ProductCategory;
+import com.fiap.document.product.ProductDocument;
+import com.fiap.enums.ProductCategory;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;

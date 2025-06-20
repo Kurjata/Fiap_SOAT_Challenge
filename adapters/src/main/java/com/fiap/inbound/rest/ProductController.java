@@ -1,27 +1,27 @@
 package com.fiap.inbound.rest;
 
 
-import static com.fiap.inbound.constants.Constants.PAGE_DEFAULT;
-import static com.fiap.inbound.constants.Constants.SIZE_DEFAULT;
-import static com.fiap.inbound.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_INVALID;
-import static com.fiap.inbound.constants.Description.PAGE_PARAMETER_DESCRIPTION;
-import static com.fiap.inbound.constants.Description.PAGE_PARAMETER_SIZE_DESCRIPTION;
-import static com.fiap.inbound.constants.Description.PRODUCT_CATEGORY_DESCRIPTION;
-import static com.fiap.inbound.constants.Description.PRODUCT_ID_DESCRIPTION;
-import static com.fiap.inbound.constants.Example.ID_EXAMPLE;
+import static com.fiap.constants.Constants.PAGE_DEFAULT;
+import static com.fiap.constants.Constants.SIZE_DEFAULT;
+import static com.fiap.constants.ControllerExceptions.PRODUCT_CREATE_CATEGORY_INVALID;
+import static com.fiap.constants.Description.PAGE_PARAMETER_DESCRIPTION;
+import static com.fiap.constants.Description.PAGE_PARAMETER_SIZE_DESCRIPTION;
+import static com.fiap.constants.Description.PRODUCT_CATEGORY_DESCRIPTION;
+import static com.fiap.constants.Description.PRODUCT_ID_DESCRIPTION;
+import static com.fiap.constants.Example.ID_EXAMPLE;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
-import com.fiap.inbound.constants.ExceptionSwagger;
+import com.fiap.constants.ExceptionSwagger;
 import com.fiap.inbound.mapper.ProductMapper;
-import request.product.ProductRequest;
-import response.product.ProductPageResponse;
-import response.product.ProductResponse;
-import com.fiap.inbound.rest.validation.ValueOfEnum;
-import enums.ProductCategory;
+import com.fiap.request.product.ProductRequest;
+import com.fiap.response.product.ProductPageResponse;
+import com.fiap.response.product.ProductResponse;
+import com.fiap.validation.ValueOfEnum;
+import com.fiap.enums.ProductCategory;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -44,7 +44,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
-import service.ProductService;
+import com.fiap.service.ProductService;
 
 @RestController
 @RequestMapping("/api/v1/product")

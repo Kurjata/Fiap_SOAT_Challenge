@@ -1,7 +1,7 @@
 package com.fiap.outbound.repository;
 
-import document.order.OrderDocument;
-import dto.order.OrderFilter;
+import com.fiap.document.order.OrderDocument;
+import com.fiap.dto.order.OrderFilter;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;

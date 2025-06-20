@@ -1,29 +1,29 @@
 package com.fiap.inbound.rest;
 
 
-import static com.fiap.inbound.constants.Constants.PAGE_DEFAULT;
-import static com.fiap.inbound.constants.Constants.SIZE_DEFAULT;
-import static com.fiap.inbound.constants.Constants.SWAGGER_TYPE_DATE_TIME;
-import static com.fiap.inbound.constants.ControllerExceptions.DATE_TIME_INVALID_FORMAT;
-import static com.fiap.inbound.constants.Description.PAGE_PARAMETER_DESCRIPTION;
-import static com.fiap.inbound.constants.Description.PAGE_PARAMETER_SIZE_DESCRIPTION;
-import static com.fiap.inbound.constants.Description.QUEUE_ID_DESCRIPTION;
-import static com.fiap.inbound.constants.Description.QUEUE_STATUS_DESCRIPTION;
-import static com.fiap.inbound.constants.Description.QUEUE_TIMESTAMP_CURRENT_STATUS_END_DESCRIPTION;
-import static com.fiap.inbound.constants.Description.QUEUE_TIMESTAMP_CURRENT_STATUS_START_DESCRIPTION;
-import static com.fiap.inbound.constants.Example.DATE_TIME_EXAMPLE;
-import static com.fiap.inbound.constants.Example.ID_EXAMPLE;
+import static com.fiap.constants.Constants.PAGE_DEFAULT;
+import static com.fiap.constants.Constants.SIZE_DEFAULT;
+import static com.fiap.constants.Constants.SWAGGER_TYPE_DATE_TIME;
+import static com.fiap.constants.ControllerExceptions.DATE_TIME_INVALID_FORMAT;
+import static com.fiap.constants.Description.PAGE_PARAMETER_DESCRIPTION;
+import static com.fiap.constants.Description.PAGE_PARAMETER_SIZE_DESCRIPTION;
+import static com.fiap.constants.Description.QUEUE_ID_DESCRIPTION;
+import static com.fiap.constants.Description.QUEUE_STATUS_DESCRIPTION;
+import static com.fiap.constants.Description.QUEUE_TIMESTAMP_CURRENT_STATUS_END_DESCRIPTION;
+import static com.fiap.constants.Description.QUEUE_TIMESTAMP_CURRENT_STATUS_START_DESCRIPTION;
+import static com.fiap.constants.Example.DATE_TIME_EXAMPLE;
+import static com.fiap.constants.Example.ID_EXAMPLE;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import com.fiap.inbound.constants.ExceptionSwagger;
+import com.fiap.constants.ExceptionSwagger;
 import com.fiap.inbound.mapper.QueueMapper;
-import response.queue.QueuePageResponse;
-import response.queue.QueueResponse;
-import com.fiap.inbound.rest.validation.DateTimeFormat;
-import com.fiap.inbound.rest.validation.ValueOfEnum;
+import com.fiap.response.queue.QueuePageResponse;
+import com.fiap.response.queue.QueueResponse;
 import com.fiap.service.QueueService;
-import enums.QueueTrackingStatus;
+import com.fiap.validation.DateTimeFormat;
+import com.fiap.validation.ValueOfEnum;
+import com.fiap.enums.QueueTrackingStatus;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

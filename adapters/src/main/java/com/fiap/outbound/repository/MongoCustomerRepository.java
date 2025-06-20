@@ -1,6 +1,6 @@
 package com.fiap.outbound.repository;
 
-import document.customer.CustomerDocument;
+import com.fiap.document.customer.CustomerDocument;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;

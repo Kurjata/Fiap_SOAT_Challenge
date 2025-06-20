@@ -1,0 +1,31 @@
+package com.fiap.dto.queue;
+
+
+import com.fiap.enums.QueueTrackingStatus;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Queue {
+  private String id;
+
+  private String orderId;
+
+  private QueueTrackingStatus status;
+
+  private LocalDateTime timestampCurrentStatus;
+
+  private String nickname;
+
+  @Builder.Default private List<QueueHistory> history = new ArrayList<>();
+
+  @Builder.Default private List<QueueOrderItems> items = new ArrayList<>();
+}
