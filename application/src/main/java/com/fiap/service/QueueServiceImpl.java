@@ -1,43 +1,38 @@
 package com.fiap.service;
 
-import com.fiap.soat.exception.BusinessException;
-import com.fiap.soat.exception.NotFoundException;
-import com.fiap.soat.mapper.QueueMapper;
-import com.fiap.soat.model.document.queue.QueueDocument;
-import com.fiap.soat.model.document.queue.QueueHistoryDocument;
-import com.fiap.soat.model.dto.order.OrderDTO;
-import com.fiap.soat.model.dto.queue.QueueDTO;
-import com.fiap.soat.model.dto.queue.QueueFilterDTO;
-import com.fiap.soat.model.enums.QueueTrackingStatus;
-import com.fiap.soat.model.enums.ServiceError;
-import com.fiap.soat.repository.QueueRepository;
+import dto.order.Order;
+import dto.queue.Queue;
+import dto.queue.QueueHistory;
+import enums.QueueTrackingStatus;
+import enums.ServiceError;
+import exception.BusinessException;
+import exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import repository.QueueRepository;
 
 import java.time.LocalDateTime;
 
-import static com.fiap.soat.model.enums.QueueTrackingStatus.FINISHED;
-import static com.fiap.soat.model.enums.QueueTrackingStatus.IN_PREPARATION;
-import static com.fiap.soat.model.enums.QueueTrackingStatus.READY;
+import static enums.QueueTrackingStatus.FINISHED;
+import static enums.QueueTrackingStatus.IN_PREPARATION;
+import static enums.QueueTrackingStatus.READY;
 
 @Service
 @AllArgsConstructor
-public class QueueService {
+public class QueueServiceImpl {
   private QueueRepository queueRepository;
-  private QueueMapper queueMapper;
 
-  public Mono<QueueDTO> create(OrderDTO order) {
+  public Mono<Queue> create(Order order) {
     return Mono.just(order)
-        .map(this.queueMapper::create)
+        .flatMap(this.queueRepository::create)
         .map(this::addHistory)
-        .flatMap(this.queueRepository::save)
-        .map(this.queueMapper::toDTO);
+        .flatMap(this.queueRepository::save);
   }
 
-  public Mono<PageImpl<QueueDTO>> getByFilter(QueueFilterDTO filter) {
+  public Mono<PageImpl<Queue>> getByFilter(QueueFilterDTO filter) {
     return this.queueRepository
         .getCountByFilter(filter)
         .flatMap(
@@ -49,7 +44,7 @@ public class QueueService {
                     .map(list -> new PageImpl<>(list, filter.getPageable(), total)));
   }
 
-  public Mono<QueueDTO> nextStatus(String id) {
+  public Mono<Queue> nextStatus(String id) {
     return Mono.just(id)
         .filter(ObjectId::isValid)
         .map(ObjectId::new)
@@ -57,22 +52,21 @@ public class QueueService {
         .flatMap(this::envolveStatus)
         .map(this::addHistory)
         .flatMap(this.queueRepository::save)
-        .map(this.queueMapper::toDTO)
         .switchIfEmpty(Mono.error(new NotFoundException(ServiceError.QUEUE_NOT_FOUND)));
   }
 
-  private QueueDocument addHistory(QueueDocument document) {
-    document
+  private Queue addHistory(Queue queue) {
+    queue
         .getHistory()
         .add(
-            QueueHistoryDocument.builder()
-                .status(document.getStatus())
-                .timestamp(document.getTimestampCurrentStatus())
+            QueueHistory.builder()
+                .status(queue.getStatus())
+                .timestamp(queue.getTimestampCurrentStatus())
                 .build());
-    return document;
+    return queue;
   }
 
-  private Mono<QueueDocument> envolveStatus(QueueDocument document) {
+  private Mono<Queue> envolveStatus(Queue document) {
     return switch (document.getStatus()) {
       case RECEIVED ->
           this.queueRepository
@@ -88,9 +82,9 @@ public class QueueService {
     };
   }
 
-  private QueueDocument setStatus(QueueDocument document, QueueTrackingStatus status) {
-    document.setStatus(status);
-    document.setTimestampCurrentStatus(LocalDateTime.now());
-    return document;
+  private Queue setStatus(Queue queue, QueueTrackingStatus status) {
+    queue.setStatus(status);
+    queue.setTimestampCurrentStatus(LocalDateTime.now());
+    return queue;
   }
 }

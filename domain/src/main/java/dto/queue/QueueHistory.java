@@ -1,7 +1,9 @@
 package dto.queue;
 
-import com.fiap.soat.model.enums.QueueTrackingStatus;
+
 import java.time.LocalDateTime;
+
+import enums.QueueTrackingStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

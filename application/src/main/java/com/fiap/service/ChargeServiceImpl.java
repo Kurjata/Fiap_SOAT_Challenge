@@ -6,20 +6,23 @@ import exception.BusinessException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import service.ChargeService;
+import service.OrderService;
 
 import java.util.function.Predicate;
 
 import static enums.OrderStatus.CREATED;
+import static enums.OrderStatus.PAID;
 import static enums.OrderStatus.WAITING_FOR_PAYMENT;
 import static enums.ServiceError.CHARGE_ORDER_PRODUCTS_EMPTY;
 import static enums.ServiceError.CHARGE_ORDER_STATUS_NOT_CREATED;
 
 @Service
 @AllArgsConstructor
-public class ChargeService {
+public class ChargeServiceImpl implements ChargeService {
 
-  private OrderServiceImpl orderService;
-  private QueueService queueService;
+  private OrderService orderService;
+  private QueueServiceImpl queueService;
 
   public Mono<Charge> create(Charge dto) {
     return Mono.just(dto.getOrderId())

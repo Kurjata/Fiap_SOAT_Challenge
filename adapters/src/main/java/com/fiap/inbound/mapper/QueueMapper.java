@@ -21,7 +21,7 @@ public interface QueueMapper extends EntityMapper {
   QueueDocument toDocument(Queue dto);
 
   @Mapping(target = "id", qualifiedByName = "toId")
-  Queue toDTO(QueueDocument document);
+  Queue toQueue(QueueDocument document);
 
   @Mapping(target = "id", ignore = true)
   @Mapping(target = "nickname", ignore = true)
