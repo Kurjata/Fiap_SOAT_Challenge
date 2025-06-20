@@ -1,7 +1,7 @@
 package com.fiap.outbound.repository;
 
-import com.fiap.outbound.model.queue.QueueDocument;
-import dto.queue.QueueFilterDTO;
+import document.queue.QueueDocument;
+import dto.queue.QueueFilter;
 import enums.QueueTrackingStatus;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Sort;
@@ -15,11 +15,11 @@ import util.SpringContext;
 
 @Repository
 public interface MongoQueueRepository extends ReactiveMongoRepository<QueueDocument, ObjectId> {
-  default Flux<QueueDocument> getByFilter(QueueFilterDTO filter) {
+  default Flux<QueueDocument> getByFilter(QueueFilter filter) {
     return filter.getContext().find(filter.getQuery("timestampCurrentStatus", Sort.Direction.ASC), QueueDocument.class);
   }
 
-  default Mono<Long> getCountByFilter(QueueFilterDTO filter) {
+  default Mono<Long> getCountByFilter(QueueFilter filter) {
     return filter.getContext().count(filter.getCountQuery(), QueueDocument.class);
   }
 

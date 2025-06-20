@@ -1,4 +1,4 @@
-package com.fiap.outbound.model.customer;
+package document.customer;
 
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;

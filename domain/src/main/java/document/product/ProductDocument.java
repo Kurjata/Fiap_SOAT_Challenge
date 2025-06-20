@@ -1,4 +1,4 @@
-package com.fiap.outbound.model.product;
+package document.product;
 
 import com.fiap.soat.model.enums.ProductCategory;
 import lombok.AllArgsConstructor;

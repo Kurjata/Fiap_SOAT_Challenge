@@ -1,4 +1,4 @@
-package com.fiap.outbound.model.order;
+package document.order;
 
 import com.fiap.soat.model.enums.OrderStatus;
 import lombok.AllArgsConstructor;

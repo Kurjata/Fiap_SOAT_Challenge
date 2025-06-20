@@ -1,4 +1,4 @@
-package com.fiap.outbound.model.order;
+package document.queue;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,12 +10,10 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderCustomerDocument {
-  @Field(name = "cpf")
-  private String documentNumber;
+public class QueueOrderItemsDocument {
+  @Field(name = "quantidade")
+  private Integer quantity;
 
   @Field(name = "nome")
   private String name;
-
-  private String email;
 }

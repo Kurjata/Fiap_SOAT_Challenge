@@ -6,12 +6,12 @@ import request.order.OrderAddProductRequest;
 import request.order.OrderCreateRequest;
 import response.order.OrderPageResponse;
 import response.order.OrderResponse;
-import com.fiap.outbound.model.order.OrderDocument;
+import document.order.OrderDocument;
 import dto.order.OrderAddProduct;
 import dto.order.OrderCustomer;
 import dto.order.Order;
-import dto.order.OrderFilterDTO;
-import dto.order.OrderProductDTO;
+import dto.order.OrderFilter;
+import dto.order.OrderProduct;
 import dto.product.Product;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
@@ -24,7 +24,7 @@ import org.springframework.data.domain.PageImpl;
 public interface OrderMapper extends EntityMapper {
 
   @Mapping(target = "id", qualifiedByName = "toId")
-  Order toDTO(OrderDocument document);
+  Order toOrder(OrderDocument document);
 
   @Mapping(target = "id", qualifiedByName = "toObjectId")
   @Mapping(target = "timestampCreatedDate", ignore = true)
@@ -32,14 +32,14 @@ public interface OrderMapper extends EntityMapper {
   OrderDocument toDocument(Order dto);
 
   @Mapping(target = "customer", source = "documentNumber", qualifiedByName = "toCustomerDTO")
-  Order toDTO(OrderCreateRequest request);
+  Order toOrder(OrderCreateRequest request);
 
   @Mapping(target = "totalAmount", expression = "java(dto.getTotalAmount())")
   OrderResponse toResponse(Order dto);
 
-  OrderAddProduct toDTO(OrderAddProductRequest dto);
+  OrderAddProduct toOrder(OrderAddProductRequest dto);
 
-  OrderProductDTO toOrderProductDTO(Product dto);
+  OrderProduct toOrderProduct(Product dto);
 
   @Mapping(
       target = "startDate",
@@ -47,7 +47,7 @@ public interface OrderMapper extends EntityMapper {
   @Mapping(
       target = "finalDate",
       expression = "java(com.fiap.soat.util.DateUtil.toDateTime(finalDate))")
-  OrderFilterDTO toFilter(
+  OrderFilter toFilter(
       Integer page,
       Integer size,
       String documentNumber,

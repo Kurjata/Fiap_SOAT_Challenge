@@ -1,20 +1,18 @@
-package com.fiap.outbound.model.queue;
+package dto.queue;
 
 import com.fiap.soat.model.enums.QueueTrackingStatus;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import java.time.LocalDateTime;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class QueueHistoryDocument {
-  @Field(name = "dataHora")
+public class QueueHistory {
+
   private LocalDateTime timestamp;
 
   private QueueTrackingStatus status;

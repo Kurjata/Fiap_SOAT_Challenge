@@ -1,18 +1,17 @@
 package dto.order;
 
-import com.fiap.soat.model.enums.OrderStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import static enums.OrderStatus.CREATED;
 
+import enums.OrderStatus;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-
-import static com.fiap.soat.model.enums.OrderStatus.CREATED;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -25,7 +24,7 @@ public class Order {
 
   @Builder.Default private OrderStatus status = CREATED;
 
-  @Builder.Default private List<OrderProductDTO> products = new ArrayList<>();
+  @Builder.Default private List<OrderProduct> products = new ArrayList<>();
 
   public boolean existsProductInList(String id) {
     return products.stream().anyMatch(product -> product.getId().equals(id));
@@ -38,7 +37,7 @@ public class Order {
 
   public BigDecimal getTotalAmount() {
     return products.stream()
-        .map(OrderProductDTO::getTotalAmount)
+        .map(OrderProduct::getTotalAmount)
         .reduce(BigDecimal.ZERO, BigDecimal::add);
   }
 }

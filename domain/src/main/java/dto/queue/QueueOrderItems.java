@@ -1,19 +1,15 @@
-package com.fiap.outbound.model.queue;
+package dto.queue;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class QueueOrderItemsDocument {
-  @Field(name = "quantidade")
+public class QueueOrderItems {
   private Integer quantity;
-
-  @Field(name = "nome")
   private String name;
 }

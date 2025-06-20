@@ -1,4 +1,4 @@
-package com.fiap.outbound.model.queue;
+package document.queue;
 
 import com.fiap.soat.model.enums.QueueTrackingStatus;
 import java.time.LocalDateTime;

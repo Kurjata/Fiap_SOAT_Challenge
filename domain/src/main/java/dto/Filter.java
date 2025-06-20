@@ -20,7 +20,7 @@ import org.springframework.data.mongodb.core.query.Query;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class FilterDTO {
+public abstract class Filter {
   private Integer page;
   private Integer size;
 

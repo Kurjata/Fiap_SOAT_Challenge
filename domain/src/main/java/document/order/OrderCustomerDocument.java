@@ -1,19 +1,21 @@
-package dto.customer;
+package document.order;
 
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Builder
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
-public class Customer {
-  private String id;
-  private LocalDateTime timestampCreatedDate;
+@AllArgsConstructor
+public class OrderCustomerDocument {
+  @Field(name = "cpf")
   private String documentNumber;
+
+  @Field(name = "nome")
   private String name;
+
   private String email;
 }

@@ -4,7 +4,7 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 import request.customer.CustomerCreateRequest;
 import response.customer.CustomerResponse;
-import com.fiap.outbound.model.customer.CustomerDocument;
+import document.customer.CustomerDocument;
 import dto.customer.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,7 +1,7 @@
 package com.fiap.outbound.repository;
 
 
-import com.fiap.outbound.model.product.ProductDocument;
+import document.product.ProductDocument;
 import enums.ProductCategory;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Pageable;

@@ -4,10 +4,10 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 import response.queue.QueuePageResponse;
 import response.queue.QueueResponse;
-import com.fiap.outbound.model.queue.QueueDocument;
+import document.queue.QueueDocument;
 import dto.order.Order;
-import dto.queue.QueueDTO;
-import dto.queue.QueueFilterDTO;
+import dto.queue.Queue;
+import dto.queue.QueueFilter;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,10 +18,10 @@ import org.springframework.data.domain.PageImpl;
 public interface QueueMapper extends EntityMapper {
 
   @Mapping(target = "id", qualifiedByName = "toObjectId")
-  QueueDocument toDocument(QueueDTO dto);
+  QueueDocument toDocument(Queue dto);
 
   @Mapping(target = "id", qualifiedByName = "toId")
-  QueueDTO toDTO(QueueDocument document);
+  Queue toDTO(QueueDocument document);
 
   @Mapping(target = "id", ignore = true)
   @Mapping(target = "nickname", ignore = true)
@@ -36,19 +36,19 @@ public interface QueueMapper extends EntityMapper {
   @Mapping(
       target = "finalDate",
       expression = "java(com.fiap.soat.util.DateUtil.toDateTime(finalDate))")
-  QueueFilterDTO toFilter(
+  QueueFilter toFilter(
       Integer page, Integer size, String startDate, String finalDate, String status);
 
-  QueueResponse toResponse(QueueDTO dto);
+  QueueResponse toResponse(Queue dto);
 
   @Mapping(target = "page", source = "number")
   @Mapping(target = "hasNext", expression = "java(page.hasNext())")
   @Mapping(target = "last", expression = "java(page.isLast())")
   @Mapping(target = "items", source = "content", qualifiedByName = "toContent")
-  QueuePageResponse toPageResponse(PageImpl<QueueDTO> page);
+  QueuePageResponse toPageResponse(PageImpl<Queue> page);
 
   @Named("toContent")
-  default List<QueueResponse> toContent(List<QueueDTO> list) {
+  default List<QueueResponse> toContent(List<Queue> list) {
     return list.stream().map(this::toResponse).toList();
   }
 }

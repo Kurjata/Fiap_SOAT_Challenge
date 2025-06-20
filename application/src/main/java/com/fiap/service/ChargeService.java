@@ -18,7 +18,7 @@ import static enums.ServiceError.CHARGE_ORDER_STATUS_NOT_CREATED;
 @AllArgsConstructor
 public class ChargeService {
 
-  private OrderService orderService;
+  private OrderServiceImpl orderService;
   private QueueService queueService;
 
   public Mono<Charge> create(Charge dto) {

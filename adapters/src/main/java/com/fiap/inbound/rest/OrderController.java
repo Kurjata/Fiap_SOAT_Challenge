@@ -79,7 +79,7 @@ public class OrderController {
   public Mono<OrderResponse> create(@RequestBody @Valid final OrderCreateRequest request) {
 
     return Mono.just(request)
-        .map(orderMapper::toDTO)
+        .map(orderMapper::toOrder)
         .flatMap(orderService::save)
         .map(orderMapper::toResponse);
   }
@@ -99,7 +99,7 @@ public class OrderController {
                       schema = @Schema(implementation = OrderResponse.class))))
   public Mono<OrderResponse> addProduct(@RequestBody @Valid final OrderAddProductRequest request) {
     return Mono.just(request)
-        .map(orderMapper::toDTO)
+        .map(orderMapper::toOrder)
         .flatMap(orderService::addProduct)
         .map(orderMapper::toResponse);
   }

@@ -8,7 +8,7 @@ import java.util.List;
 import request.product.ProductRequest;
 import response.product.ProductPageResponse;
 import response.product.ProductResponse;
-import com.fiap.outbound.model.product.ProductDocument;
+import document.product.ProductDocument;
 import dto.product.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,23 +1,29 @@
-package dto.product;
+package document.order;
 
-import enums.ProductCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
-@Builder
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class OrderProductDocument {
   private String id;
-  private LocalDateTime timestampCreatedDate;
-  private ProductCategory category;
+
+  @Field(name = "valor")
   private BigDecimal amount;
+
+  @Field(name = "quantidade")
+  private Integer quantity;
+
+  @Field(name = "nome")
   private String name;
+
+  @Field(name = "descricao")
   private String description;
 }

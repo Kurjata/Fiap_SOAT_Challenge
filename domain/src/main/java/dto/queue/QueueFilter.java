@@ -1,13 +1,12 @@
-package dto.order;
+package dto.queue;
 
-import dto.FilterDTO;
-import com.fiap.soat.model.enums.OrderStatus;
+import dto.Filter;
+import com.fiap.soat.model.enums.QueueTrackingStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.mongodb.core.query.Criteria;
 
 import java.time.LocalDateTime;
@@ -18,26 +17,21 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class OrderFilterDTO extends FilterDTO {
-
-  private String documentNumber;
+public class QueueFilter extends Filter {
 
   private LocalDateTime startDate;
 
   private LocalDateTime finalDate;
 
-  private OrderStatus status;
+  private QueueTrackingStatus status;
 
   @Override
   protected Criteria getCriteria() {
     var criteria = new Criteria();
 
-    if (StringUtils.isNotBlank(documentNumber))
-      criteria.and("customer.documentNumber").is(documentNumber);
-
     if (Objects.nonNull(status)) criteria.and("status").is(status.name());
 
-    this.filterLocalDateTime(criteria, "timestampCreatedDate", startDate, finalDate);
+    this.filterLocalDateTime(criteria, "timestampCurrentStatus", startDate, finalDate);
 
     return criteria;
   }

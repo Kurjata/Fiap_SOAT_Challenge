@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class QueueDTO {
+public class Queue {
   private String id;
 
   private String orderId;
@@ -24,7 +24,7 @@ public class QueueDTO {
 
   private String nickname;
 
-  @Builder.Default private List<QueueHistoryDTO> history = new ArrayList<>();
+  @Builder.Default private List<QueueHistory> history = new ArrayList<>();
 
-  @Builder.Default private List<QueueOrderItemsDTO> items = new ArrayList<>();
+  @Builder.Default private List<QueueOrderItems> items = new ArrayList<>();
 }
