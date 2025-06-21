@@ -25,7 +25,6 @@
 		<module>start</module>
 		<module>adapters</module>
 		<module>application</module>
-		<module>infrastructure</module>
 		<module>domain</module>
 	</modules>
 	<scm>
