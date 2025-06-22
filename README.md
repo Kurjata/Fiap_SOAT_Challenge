@@ -18,6 +18,10 @@ Este projeto explora conceitos e boas práticas de desenvolvimento reativo, apro
 
 Diagrama para fluxo do desenvolvimento da aplicação. Link: https://miro.com/app/board/uXjVI6zdSIY=/.
 
+## Vídeo explicativo do projeto
+
+YouTube: https://www.youtube.com/watch?v=JePb8g_2d8A.
+
 ## Como Este Projeto se Destaca
 
 1. **Arquitetura Reativa**: Utiliza Spring WebFlux, implementando programação reativa para garantir alto throughput, consumo eficiente de recursos e escalabilidade simplificada com operações não-bloqueantes.
