@@ -18,7 +18,6 @@ import static com.fiap.soat.entities.enums.QueueTrackingStatus.RECEIVED;
 import static com.fiap.soat.entities.enums.ServiceError.QUEUE_ENVOLVE_STATUS_FINISHED;
 import static com.fiap.soat.entities.enums.ServiceError.QUEUE_NOT_FIRST_PROCESS;
 
-
 @AllArgsConstructor
 public class QueueNextStatusUseCase implements UseCase<String, QueueDTO> {
   private final QueueDatabaseGateway gateway;
@@ -29,8 +28,8 @@ public class QueueNextStatusUseCase implements UseCase<String, QueueDTO> {
     return queueGetByIdUseCase
         .execute(id)
         .flatMap(this::envolveReceived)
-        .flatMap(this::envolveInPreparation)
         .flatMap(this::envolveReady)
+        .flatMap(this::envolveInPreparation)
         .flatMap(this::envolveFinished)
         .flatMap(gateway::save);
   }
@@ -44,8 +43,7 @@ public class QueueNextStatusUseCase implements UseCase<String, QueueDTO> {
                     .findFirstReceived()
                     .filter(received -> received.getId().equals(queue.getId()))
                     .map(d -> setStatus(d, IN_PREPARATION))
-                    .switchIfEmpty(
-                        Mono.error(new BusinessException(QUEUE_NOT_FIRST_PROCESS))))
+                    .switchIfEmpty(Mono.error(new BusinessException(QUEUE_NOT_FIRST_PROCESS))))
         .defaultIfEmpty(queue);
   }
 
