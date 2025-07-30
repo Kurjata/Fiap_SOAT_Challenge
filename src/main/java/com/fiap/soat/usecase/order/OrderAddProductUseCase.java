@@ -38,7 +38,7 @@ public class OrderAddProductUseCase implements UseCase<OrderAddProductDTO, Order
 
   private Mono<OrderDTO> create(OrderDTO order, OrderAddProductDTO dto) {
     return productGetByIdUseCase
-        .execute(dto.getOrderId())
+        .execute(dto.getProductId())
         .map(this.mapper::toOrderProductDTO)
         .filter(Predicate.not(product -> order.existsProductInList(product.getId())))
         .switchIfEmpty(Mono.error(new NotFoundException(ORDER_PRODUCT_EXISTS_IN_LIST)))
