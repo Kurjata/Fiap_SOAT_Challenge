@@ -3,5 +3,6 @@ kind: ConfigMap
 metadata:
   name: app-config
 data:
-  mongo_host: "mongodb"
-  mongo_db: "pedidos"
+  PROFILE_ACTIVE: prd
+  MONGO_HOST: mongodb
+  MONGO_DB: fiap
