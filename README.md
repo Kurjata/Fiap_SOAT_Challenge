@@ -11,6 +11,7 @@ Bem-vindo(a) ao projeto **SOAT**! Este repositório faz parte da **Pós-Graduaç
   - **Spring WebFlux**
   - **MongoDB** (banco de dados)
   - **Docker**
+  - **Kubernet**
 
 Este projeto explora conceitos e boas práticas de desenvolvimento reativo, aproveitando o ecossistema do Spring WebFlux e a praticidade de um banco de dados não relacional como o MongoDB. Também inclui a possibilidade de containerização e orquestração de serviços por meio do Docker, tornando a aplicação escalável e fácil de gerenciar.
 
@@ -21,6 +22,7 @@ Diagrama para fluxo do desenvolvimento da aplicação. Link: https://miro.com/ap
 ## Vídeo explicativo do projeto
 
 YouTube: https://www.youtube.com/watch?v=JePb8g_2d8A.
+SERÁ SUBSTITUÍDO PELA PARTE 2
 
 ## Como Este Projeto se Destaca
 
@@ -54,15 +56,39 @@ YouTube: https://www.youtube.com/watch?v=JePb8g_2d8A.
    # Abra o arquivo .env e inclua os valores correspondentes.
    ```
 
-4. **Execute o Projeto usando o comando docker**:
+4. **Inicie o Minikube**:
    ```bash
-   docker compose up --build
+   minikube start
    ```
-5. **Utilize o Swagger via browser para navegar entre as API's disponíveis**:
+5. **Construa a imagem Docker da aplicação**:
    ```bash
-   http://localhost:8080/webjars/swagger-ui/index.html
+   docker build -t fiap_soat_challenge-app:latest -f .docker/prod/Dockerfile .
    ```
 
-   
+6. **Carregue a imagem da aplicação no ambiente do Minikube**:
+   ```bash
+   minikube image load fiap_soat_challenge-app:latest
+   ```
 
- #### Verifique se a porta 8080 está livre, caso contrário, a altere no arquivo `docker-compose.yml`.
+7. **Carregue a imagem oficial do MongoDB no Minikube**:
+   ```bash
+   minikube image load mongo:8.0
+   ```
+
+8. **Aplique os manifests do Kubernetes para criar os recursos (pods, serviços, etc.)**:
+   ```bash
+   kubectl apply -f k8s/
+   ```
+
+9. **Verifique se os pods subiram corretamente**:
+   ```bash
+   kubectl get pods
+   ```
+
+10. **Acesse a aplicação via Minikube**:
+    ```bash
+     minikube service pedidos-api
+    ```
+</br>
+
+ #### Acesse a documentação do Swagger - http://127.0.0.1:44585/webjars/swagger-ui/index.html
