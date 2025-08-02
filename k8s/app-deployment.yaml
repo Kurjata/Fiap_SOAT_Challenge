@@ -13,37 +13,34 @@ spec:
         app: pedidos-api
     spec:
       containers:
-      - name: pedidos-api
-        image: fiap_soat_challenge-clear-app:latest
-        ports:
-        - containerPort: 8080
-        env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: prod
-        - name: MONGO_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: mongo_host
-        - name: MONGO_DB
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: mongo_db
-        - name: MONGO_USER
-          valueFrom:
-            secretKeyRef:
-              name: mongo-secret
-              key: username
-        - name: MONGO_PASS
-          valueFrom:
-            secretKeyRef:
-              name: mongo-secret
-              key: password
-        resources:
-          requests:
-            cpu: 100m
-            memory: 128Mi
-          limits:
-            cpu: 250m
-            memory: 256Mi
+        - name: pedidos-api
+          image: fiap_soat_challenge-app:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: PROFILE_ACTIVE
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: MONGO_HOST
+            - name: MONGO_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: MONGO_DB
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_USER
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_PASS
