@@ -85,7 +85,7 @@ SERÁ SUBSTITUÍDO PELA PARTE 2
    kubectl get pods
    ```
 
-10. **Acesse a aplicação via Minikube**:
+10. **Expõe o serviço da aplicação via Minikube**:
     ```bash
      minikube service pedidos-api
     ```
