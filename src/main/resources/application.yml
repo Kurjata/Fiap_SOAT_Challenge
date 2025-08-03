@@ -7,3 +7,21 @@ spring:
 
 app:
   version: ^project.version^
+  integration:
+  connection:
+    retry:
+      seconds-interval: 3
+      quantity: 3
+    seconds-timeout: 10
+    mercado-pago:
+      merchant:
+        id: 73442808
+        external-id: Loja-soat
+        name: Soat Loja
+      token: APP_USR-2870235557930517-072322-3cf42865b302e4e9f5c1dcaf05295429-2561644259
+      base-url: https://api.mercadopago.com
+      order:
+        create: /v1/orders
+        get: /merchant_orders/{orderId}
+      qrcode:
+        create: /instore/orders/qr/seller/collectors/{userId}/pos/{merchant}/qrs
