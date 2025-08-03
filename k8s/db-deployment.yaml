@@ -12,6 +12,8 @@ spec:
       labels:
         app: mongodb
     spec:
+      securityContext:
+        fsGroup: 999 
       containers:
         - name: mongodb
           image: mongo:8.0
@@ -29,8 +31,9 @@ spec:
                   name: mongo-secret
                   key: MONGO_PASS
           volumeMounts:
-            - name: mongo-data
+            - name: mongo-storage
               mountPath: /data/db
       volumes:
-        - name: mongo-data
-          emptyDir: {}
+        - name: mongo-storage
+          persistentVolumeClaim:
+            claimName: mongo-pvc

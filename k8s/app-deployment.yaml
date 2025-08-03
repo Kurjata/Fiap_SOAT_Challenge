@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pedidos-api
+  name: pedidos-api-deployment
 spec:
   replicas: 2
   selector:
