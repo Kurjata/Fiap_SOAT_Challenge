@@ -14,8 +14,8 @@ app:
       quantity: 3
     seconds-timeout: 10
     mercado-pago:
+      user-id: 2561644259
       merchant:
-        id: 73442808
         external-id: Loja-soat
         name: Soat Loja
       token: APP_USR-2870235557930517-072322-3cf42865b302e4e9f5c1dcaf05295429-2561644259

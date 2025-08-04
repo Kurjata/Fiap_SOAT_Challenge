@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MercadoPagoOrderRequest {
+  @JsonProperty("total_amount")
   private BigDecimal totalAmount;
   private MercadoPagoOrderConfigRequest config;
   private String type;

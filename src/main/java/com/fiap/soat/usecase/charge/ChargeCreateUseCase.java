@@ -11,6 +11,7 @@ import com.fiap.soat.entities.enums.OrderStatus;
 import com.fiap.soat.entities.exception.BusinessException;
 import java.util.function.Predicate;
 
+import com.fiap.soat.gateways.integration.mercadopago.MercadoPagoIntegrationGateway;
 import com.fiap.soat.usecase.UseCase;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.tuple.Pair;
@@ -20,6 +21,7 @@ import reactor.core.publisher.Mono;
 public class ChargeCreateUseCase implements UseCase<ChargeDTO, ChargeDTO> {
   private final UseCase<String, OrderDTO> orderGetByIdUseCase;
   private final UseCase<Pair<OrderStatus, OrderDTO>, OrderDTO> OrderSetStatusUseCase;
+  private final MercadoPagoIntegrationGateway mercadoPagoIntegration;
 
   @Override
   public Mono<ChargeDTO> execute(ChargeDTO charge) {

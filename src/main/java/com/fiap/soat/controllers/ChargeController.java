@@ -3,6 +3,7 @@ package com.fiap.soat.controllers;
 import com.fiap.soat.entities.dto.charge.ChargeDTO;
 import com.fiap.soat.gateways.db.OrderDatabaseGateway;
 import com.fiap.soat.gateways.db.QueueDatabaseGateway;
+import com.fiap.soat.gateways.integration.mercadopago.MercadoPagoIntegrationGateway;
 import com.fiap.soat.usecase.charge.ChargeCreateUseCase;
 import com.fiap.soat.usecase.charge.ChargePaymentUseCase;
 import com.fiap.soat.usecase.order.OrderGetByIdUseCase;
@@ -16,11 +17,16 @@ public class ChargeController {
   private final ChargeCreateUseCase chargeCreateUseCase;
   private final ChargePaymentUseCase chargePaymentUseCase;
 
-  public ChargeController(OrderDatabaseGateway orderGateway, QueueDatabaseGateway queueGateway) {
+  public ChargeController(
+      OrderDatabaseGateway orderGateway,
+      QueueDatabaseGateway queueGateway,
+      MercadoPagoIntegrationGateway mercadoPagoIntegrationGateway) {
     var orderGetByIdUseCase = new OrderGetByIdUseCase(orderGateway);
     var orderSetStatusUseCase = new OrderSetStatusUseCase(orderGateway);
     var queueCreateUseCase = new QueueCreateUseCase(queueGateway);
-    this.chargeCreateUseCase = new ChargeCreateUseCase(orderGetByIdUseCase, orderSetStatusUseCase);
+    this.chargeCreateUseCase =
+        new ChargeCreateUseCase(
+            orderGetByIdUseCase, orderSetStatusUseCase, mercadoPagoIntegrationGateway);
     this.chargePaymentUseCase =
         new ChargePaymentUseCase(orderGetByIdUseCase, orderSetStatusUseCase, queueCreateUseCase);
   }
