@@ -46,7 +46,7 @@ Miro: https://miro.com/app/board/uXjVJXrmXqc=/
 ### Passos para Execução
 1. **Clone o Repositório**:
    ```bash
-   git clone https://github.com/Kurjata/Fiap_SOAT_Challenge.git
+   git clone git@github.com:Kurjata/Fiap_SOAT_Challenge.git
     ```
 2. **Navegue até o Diretório do Projeto**:
     ```bash
@@ -56,7 +56,7 @@ Miro: https://miro.com/app/board/uXjVJXrmXqc=/
 3. **Configurar as variáveis de ambiente:**
    ```bash
    # Cria uma cópia do arquivo
-   cp .env.exemple .env
+   cp .env.example .env
    
    # Abra o arquivo .env e inclua os valores correspondentes.
    ```
