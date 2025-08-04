@@ -22,15 +22,19 @@ Diagrama para fluxo do desenvolvimento da aplicação. Link: https://miro.com/ap
 ## Vídeo explicativo do projeto
 
 YouTube: https://www.youtube.com/watch?v=JePb8g_2d8A.
-SERÁ SUBSTITUÍDO PELA PARTE 2
+
+## Diagramas de Arquitetura de Negócio e Infra
+
+Miro: https://miro.com/app/board/uXjVJXrmXqc=/
 
 ## Como Este Projeto se Destaca
 
 1. **Arquitetura Reativa**: Utiliza Spring WebFlux, implementando programação reativa para garantir alto throughput, consumo eficiente de recursos e escalabilidade simplificada com operações não-bloqueantes.
-2. **Arquitetura Hexagonal**: Segue o padrão de arquitetura hexagonal, promovendo uma separação clara entre as camadas de domínio, aplicação e infraestrutura, facilitando a manutenção e evolução do código.
+2. **Clean Architecture**: Estrutura o sistema em camadas independentes, separando regras de negócio de detalhes externos, o que facilita testes, manutenção e evolução do software.
 3. **Uso de MongoDB**: Oferece uma estrutura flexível de armazenamento e facilita operações de grande volume de dados sem esquemas rígidos.
 4. **Facilidade de Deploy**: Com Docker, é possível containerizar e executar a aplicação de forma simples, garantindo portabilidade e padronização do ambiente.
 5. **Documentação com Swagger**: A aplicação inclui uma interface Swagger para facilitar a exploração das APIs, tornando o desenvolvimento e testes mais ágeis.
+6. **Kubernetes**: Gerencia o ciclo de vida dos containers, automatizando o deploy, escalonamento, alta disponibilidade e exposição dos serviços da aplicação.
 
 ## Como executar o Projeto
 
