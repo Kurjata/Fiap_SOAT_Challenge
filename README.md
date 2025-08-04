@@ -97,9 +97,6 @@ Miro: https://miro.com/app/board/uXjVJXrmXqc=/
    ```bash
    kubectl get pods
    ```
-
-8.  **Expõe o serviço da aplicação**:
-    ```bash
    # Service
    kubectl apply -f k8s/db-service.yaml
    kubectl apply -f k8s/app-service.yaml
