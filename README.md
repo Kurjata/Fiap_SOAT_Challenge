@@ -64,7 +64,7 @@ SERÁ SUBSTITUÍDO PELA PARTE 2
 
 5. **Altere o local de armazenamento do pv**: Dentro do arquivo k8s/pv.yaml altere a propriedade spec.hostPath.path, e adicione o caminho completo, desde a raíz do sistema até a pasta `mongo-data`.
 
-6. **Aplique os manifests do Kubernetes para criar os recursos (pods, serviços, etc.)**:
+6. **Aplique os manifests do Kubernetes para criar os recursos (metrics, secrets, configmap, etc.)**:
    ```bash
    # Metrics
    kubectl apply -f k8s/infra/metrics.yaml
