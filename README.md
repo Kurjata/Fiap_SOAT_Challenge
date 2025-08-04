@@ -100,6 +100,5 @@ Miro: https://miro.com/app/board/uXjVJXrmXqc=/
    # Service
    kubectl apply -f k8s/db-service.yaml
    kubectl apply -f k8s/app-service.yaml
-    ```
 
  #### Acesse a documentação do Swagger - http://localhost:30080/webjars/swagger-ui/index.html
