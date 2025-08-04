@@ -5,10 +5,11 @@ metadata:
   labels:
     type: local
 spec:
-  # storageClassName: manual
+  storageClassName: local-storage
+  persistentVolumeReclaimPolicy: Retain
   capacity:
     storage: 1Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/data/mongo-volume"
+    path: "/Users/jcuema/dev/11SOAT/Fiap_SOAT_Challenge/mongo-data"

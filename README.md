@@ -36,7 +36,8 @@ SERÁ SUBSTITUÍDO PELA PARTE 2
 
 ### Pré-requisitos
 - **Java 21**: Certifique-se de ter o JDK 21 instalado em sua máquina.
-- **Docker**: Instale o Docker para executar a aplicação em um contêiner.
+- **Docker Desktop**: Instale o Docker Desktop para Windows, Linux ou Mac e habilite o kubernetes.
+- **Kubernetes**: Kubernetes deve estar habilitado na computador. Alternativamente se estiver utilizando um Mac, pode-se utilizar o `Orbstack`.
 
 ### Passos para Execução
 1. **Clone o Repositório**:
@@ -49,46 +50,55 @@ SERÁ SUBSTITUÍDO PELA PARTE 2
     ```
    
 3. **Configurar as variáveis de ambiente:**
-    ```bash
+   ```bash
    # Cria uma cópia do arquivo
    cp .env.exemple .env
    
    # Abra o arquivo .env e inclua os valores correspondentes.
    ```
 
-4. **Inicie o Minikube**:
-   ```bash
-   minikube start
-   ```
-5. **Construa a imagem Docker da aplicação**:
+4. **Construa a imagem Docker da aplicação**:
    ```bash
    docker build -t fiap_soat_challenge-app:latest -f .docker/prod/Dockerfile .
    ```
 
-6. **Carregue a imagem da aplicação no ambiente do Minikube**:
+5. **Altere o local de armazenamento do pv**: Dentro do arquivo k8s/pv.yaml altere a propriedade spec.hostPath.path, e adicione o caminho completo, desde a raíz do sistema até a pasta `mongo-data`.
+
+6. **Aplique os manifests do Kubernetes para criar os recursos (pods, serviços, etc.)**:
    ```bash
-   minikube image load fiap_soat_challenge-app:latest
+   # Metrics
+   kubectl apply -f k8s/infra/metrics.yaml
+
+   # Secrets
+   kubectl apply -f k8s/db-secrets.yaml
+
+   # ConfigMap
+   kubectl apply -f k8s/app-configmap.yaml
+
+   # Persistent Volum
+   kubectl apply -f k8s/pv.yaml
+
+   # Persistent Volum Claim
+   kubectl apply -f k8s/pvc.yaml
+
+   # Deployment
+   kubectl apply -f k8s/db-deployment.yaml
+   kubectl apply -f k8s/app-deployment.yaml
+
+   # Horizontal Auto Scaler
+   kubectl apply -f k8s/app-hpa.yaml
    ```
 
-7. **Carregue a imagem oficial do MongoDB no Minikube**:
-   ```bash
-   minikube image load mongo:8.0
-   ```
-
-8. **Aplique os manifests do Kubernetes para criar os recursos (pods, serviços, etc.)**:
-   ```bash
-   kubectl apply -f k8s/
-   ```
-
-9. **Verifique se os pods subiram corretamente**:
+7. **Verifique se os pods subiram corretamente**:
    ```bash
    kubectl get pods
    ```
 
-10. **Expõe o serviço da aplicação via Minikube**:
+8.  **Expõe o serviço da aplicação**:
     ```bash
-     minikube service pedidos-api
+   # Service
+   kubectl apply -f k8s/db-service.yaml
+   kubectl apply -f k8s/app-service.yaml
     ```
-</br>
 
- #### Acesse a documentação do Swagger - http://127.0.0.1:44585/webjars/swagger-ui/index.html
+ #### Acesse a documentação do Swagger - http://localhost:30080/webjars/swagger-ui/index.html
