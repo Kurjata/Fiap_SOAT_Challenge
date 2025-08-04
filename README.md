@@ -81,24 +81,25 @@ SERÁ SUBSTITUÍDO PELA PARTE 2
    # Persistent Volum Claim
    kubectl apply -f k8s/pvc.yaml
 
-   # Deployment
+   # Deployment mongodb
    kubectl apply -f k8s/db-deployment.yaml
+
+   # Service mongodb
+   kubectl apply -f k8s/db-service.yaml
+   
+   # Deployment pedidos-api
    kubectl apply -f k8s/app-deployment.yaml
 
    # Horizontal Auto Scaler
    kubectl apply -f k8s/app-hpa.yaml
+
+   # Service pedidos-api
+   kubectl apply -f k8s/app-service.yaml
    ```
 
 7. **Verifique se os pods subiram corretamente**:
    ```bash
    kubectl get pods
    ```
-
-8.  **Expõe o serviço da aplicação**:
-    ```bash
-   # Service
-   kubectl apply -f k8s/db-service.yaml
-   kubectl apply -f k8s/app-service.yaml
-    ```
 
  #### Acesse a documentação do Swagger - http://localhost:30080/webjars/swagger-ui/index.html
