@@ -1,4 +1,4 @@
-FROM maven:3.9.9-eclipse-temurin-21-alpine as builder
+FROM maven:3.9.9-eclipse-temurin-21-alpine
 
 WORKDIR /build
 
@@ -7,12 +7,6 @@ COPY ../../src ./src
 
 RUN mvn clean package -DskipTests --batch-mode
 
-FROM openjdk:21-jdk
-
-WORKDIR /app
-
-COPY --from=builder /build/target/*.jar /app.jar
-
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/build/target/soat-1.0.0.jar"]

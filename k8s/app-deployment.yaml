@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pedidos-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pedidos-api
+  template:
+    metadata:
+      labels:
+        app: pedidos-api
+    spec:
+      containers:
+        - name: pedidos-api
+          image: fiap_soat_challenge-app:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 1m      # Reserva 20% de um núcleo de CPU# Reserva 256 Mebibytes de RAM      # Impõe um limite máximo de 50% de um núcleo de CPU
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: PROFILE_ACTIVE
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: MONGO_HOST
+            - name: MONGO_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: MONGO_DB
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_USER
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_PASS
