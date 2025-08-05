@@ -21,7 +21,7 @@ Diagrama para fluxo do desenvolvimento da aplicação. Link: https://miro.com/ap
 
 ## Vídeo explicativo do projeto
 
-YouTube: https://www.youtube.com/watch?v=JePb8g_2d8A.
+YouTube: https://www.youtube.com/watch?v=9ldKLLqntKg
 
 ## Diagramas de Arquitetura de Negócio e Infra
 
